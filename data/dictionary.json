@@ -258,7 +258,6 @@
   "Aleluia": "Louvai ao Senhor (Apocalipse 19:1).",
   "Anátema": "Maldição, algo dedicado à destruição (Gálatas 1:8).",
   "Anticristo": "Opositor de Cristo no fim dos tempos (1 João 2:18).",
-  "Apocalipse": "Revelação, livro profético do Novo Testamento (Apocalipse 1:1).",
   "Apologética": "Defesa racional da fé cristã (1 Pedro 3:15).",
   "Apostasia": "Abandono da fé professada (2 Tessalonicenses 2:3).",
   "Arca da Aliança": "Caixa sagrada com as tábuas da lei (Êxodo 25:10-22).",
@@ -303,7 +302,6 @@
   "Estóico": "Filósofo grego que debateu com Paulo (Atos 17:18).",
   "Eucaristia": "Ação de graças, ceia do Senhor (1 Coríntios 11:24).",
   "Eunuco": "Oficial da corte, caso do batizado por Filipe (Atos 8:27).",
-  "Evangelista": "Pregador do evangelho (Efésios 4:11).",
   "Filactério": "Pequena caixa com textos da lei (Mateus 23:5).",
   "Galardão": "Recompensa divina (Mateus 5:12).",
   "Galiléia": "Região norte de Israel (Mateus 4:12).",
@@ -368,7 +366,6 @@
   "Sansão": "Juiz de Israel de força extraordinária (Juízes 13:24).",
   "Santo dos Santos": "Lugar santíssimo do templo (Hebreus 9:3).",
   "Sara": "Esposa de Abraão, mãe de Isaque (Gênesis 17:15).",
-  "Satanás": "Adversário, acusador (Jó 1:6).",
   "Saulo": "Nome judaico de Paulo (Atos 13:9).",
   "Selá": "Pausa musical nos Salmos (Salmos 3:2).",
   "Sêneca": "Filósofo estoico contemporâneo de Paulo (Atos 17:18).",
@@ -417,5 +414,11 @@
   "Zimri": "Rei de Israel que reinou sete dias (1 Reis 16:15).",
   "Zion": "Monte Sião, símbolo de Jerusalém (Salmos 48:2).",
   "Zoar": "Cidade poupada da destruição (Gênesis 19:22).",
-  "Zorobabel": "Governador de Judá (Ageu 1:1)."
+  "Zorobabel": "Governador de Judá (Ageu 1:1).",
+  "Consolação": "Alívio e fortalecimento dado pelo Espírito Santo em momentos de aflição ou sofrimento.",
+  "Escatologia": "Estudo teológico sobre os eventos finais da história da humanidade e o destino eterno.",
+  "Glorificação": "O estágio final da salvação, onde o crente é liberto da presença do pecado e recebe um corpo imortal.",
+  "Concórdia": "Estado de harmonia e paz entre os membros do corpo de Cristo através do amor fraternal.",
+  "Edificação": "Processo de crescimento espiritual e fortalecimento da igreja ou do indivíduo na fé.",
+  "Exegese": "Explicação ou interpretação crítica e minuciosa de um texto bíblico para extrair seu real sentido."
 }
