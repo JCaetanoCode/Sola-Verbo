@@ -88,24 +88,27 @@
                 <!-- Conteúdo do Capítulo -->
                 <div id="chapter-content" class="chapter-content"
                     style="display:none;">
-
                     <div class="chapter-header">
-    <button id="back-button" class="back-button">← Voltar</button>
-    <h2 id="chapter-title"></h2>
-    <div class="audio-controls">
-        <button id="play-chapter" class="audio-button" title="Ouvir capítulo">🔊</button>
-        <button id="pause-chapter" class="audio-button" title="Pausar" style="display:none;">⏸️</button>
-        <button id="stop-chapter" class="audio-button" title="Parar" style="display:none;">⏹️</button>
-        <select id="audio-speed" class="audio-speed" title="Velocidade">
-            <option value="0.5">0.5x</option>
-            <option value="0.75">0.75x</option>
-            <option value="1" selected>1x</option>
-            <option value="1.25">1.25x</option>
-            <option value="1.5">1.5x</option>
-            <option value="2">2x</option>
-        </select>
-    </div>
-    
+                        <button id="back-button" class="back-button">←
+                            Voltar</button>
+                        <h2 id="chapter-title"></h2>
+                        <div class="audio-controls">
+                            <button id="play-chapter" class="audio-button"
+                                title="Ouvir capítulo">🔊</button>
+                            <button id="pause-chapter" class="audio-button"
+                                title="Pausar" style="display:none;">⏸️</button>
+                            <button id="stop-chapter" class="audio-button"
+                                title="Parar" style="display:none;">⏹️</button>
+                            <select id="audio-speed" class="audio-speed"
+                                title="Velocidade">
+                                <option value="0.5">0.5x</option>
+                                <option value="0.75">0.75x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
                         <div class="search-results-nav" style="display:none;">
                             <button id="prev-result"
                                 class="nav-result">↑</button>
@@ -122,7 +125,7 @@
                     <div id="verses-container"></div>
                 </div>
 
-                <!-- Aba de Comparação de Versões -->
+                <!-- Comparação de Versões (aba) -->
                 <div id="compare-view-full" class="compare-view-full"
                     style="display:none;">
                     <div class="compare-controls">
@@ -264,32 +267,93 @@
                 </div>
             </div>
 
-                   </div> <!-- Fim do occurrences-modal -->
-        
-        <!-- Rodapé -->
-        <footer class="app-footer">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <span class="footer-item">
-                        <span class="icon">👤</span>
-                        <span class="value">Jairo Caetano</span>
-                    </span>
-                    <span class="footer-separator">|</span>
-                    <span class="footer-item">
-                        <span class="icon">✉️</span>
-                        <span class="value">emailcaetano@email.com</span>
-                    </span>
-                    <span class="footer-separator">|</span>
-                    <span class="footer-item">
-                        <span class="icon">📍</span>
-                        <span class="value">Araçatuba - SP</span>
-                    </span>
+            <!-- Rodapé -->
+            <footer class="app-footer">
+                <div class="footer-container">
+                    <div class="footer-top">
+                        <div class="footer-col">
+                            <h4>📖 Sola Verbo</h4>
+                            <p>Bíblia de Estudo com ferramentas para
+                                aprofundamento nas Escrituras Sagradas.</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Navegação</h4>
+                            <ul>
+                                <li><a href="#"
+                                        onclick="goHome()">Início</a></li>
+                                <li><a href="#"
+                                        onclick="document.querySelector('[data-tab=old]').click()">Antigo
+                                        Testamento</a></li>
+                                <li><a href="#"
+                                        onclick="document.querySelector('[data-tab=new]').click()">Novo
+                                        Testamento</a></li>
+                                <li><a href="#"
+                                        onclick="document.querySelector('[data-tab=compare]').click()">Comparar
+                                        Versões</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Ferramentas</h4>
+                            <ul>
+                                <li><a href="#"
+                                        onclick="document.getElementById('dictionary-button').click()">📚
+                                        Dicionário</a></li>
+                                <li><a href="#"
+                                        onclick="document.getElementById('favorites-button').click()">⭐
+                                        Favoritos</a></li>
+                                <li><a href="#"
+                                        onclick="document.getElementById('search-input').focus()">🔍
+                                        Busca</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Links</h4>
+                            <ul>
+                                <li><a href="#"
+                                        onclick="openContentPage('sobre')">Sobre</a></li>
+                                <li><a href="#"
+                                        onclick="openContentPage('contato')">Contato</a></li>
+                                <li><a href="#"
+                                        onclick="openContentPage('noticias')">Notícias</a></li>
+                                <li><a href="#"
+                                        onclick="openContentPage('doar')">Doar</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Contato</h4>
+                            <ul class="footer-contact">
+                                <li>👤 Jairo Caetano</li>
+                                <li>✉️ emailcaetano@email.com</li>
+                                <li>📍 Araçatuba - SP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="footer-bottom-left">
+                            <span>© 2026 Sola Verbo</span>
+                            <span class="footer-separator">|</span>
+                            <span>Todos os direitos reservados</span>
+                        </div>
+                        <div class="footer-bottom-right">
+                            <a href="#">Política de Privacidade</a>
+                            <span class="footer-separator">|</span>
+                            <a href="#">Termos de Uso</a>
+                        </div>
+                    </div>
                 </div>
-                <span class="footer-copy">© 2026</span>
+            </footer>
+
+            <!-- Modal de Conteúdo (Sobre, Contato, Notícias, Doar) -->
+            <div id="content-modal" class="modal" style="display:none;">
+                <div class="modal-content" style="max-width:650px;">
+                    <div class="modal-header">
+                        <h3 id="content-title"></h3>
+                        <button class="close-button"
+                            onclick="closeContentPage()">×</button>
+                    </div>
+                    <div id="content-body" class="content-page-wrapper"></div>
+                </div>
             </div>
-        </footer>
-        
-   
 
         </div>
 
@@ -301,5 +365,8 @@
         <script src="js/study.js"></script>
         <script src="js/ui.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/audio.js"></script>
+        <script src="js/pages.js"></script>
+
     </body>
 </html>

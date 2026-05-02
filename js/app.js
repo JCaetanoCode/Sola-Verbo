@@ -151,5 +151,20 @@ function setupEventListeners() {
     };
     initAudio();
 
+    // No setupEventListeners, adicione:
+    document.getElementById('play-chapter').addEventListener('click', playChapterAudio);
+    document.getElementById('pause-chapter').addEventListener('click', pauseChapterAudio);
+    document.getElementById('stop-chapter').addEventListener('click', stopChapterAudio);
+
+    // Parar áudio ao navegar
+    document.getElementById('back-button').addEventListener('click', () => {
+        stopChapterAudio();
+        goBack();
+    });
+
+    document.getElementById('home-button').addEventListener('click', () => {
+        stopChapterAudio();
+        goHome();
+    });
 
 }
