@@ -1,0 +1,26 @@
+{
+    "name": "Sola Verbo - Bíblia de Estudo",
+    "short_name": "Sola Verbo",
+    "description": "Bíblia de Estudo com ferramentas para aprofundamento nas Escrituras Sagradas",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0F0D0A",
+    "theme_color": "#C9A84C",
+    "orientation": "any",
+    "lang": "pt-BR",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["books", "education", "utilities"]
+}
