@@ -5,7 +5,7 @@ function openContentPage(page) {
     const modal = document.getElementById('content-modal');
     const title = document.getElementById('content-title');
     const body = document.getElementById('content-body');
-    
+
     const pages = {
         sobre: {
             title: '📖 Sobre o Sola Verbo',
@@ -45,7 +45,7 @@ function openContentPage(page) {
                 </div>
             `
         },
-        
+
         contato: {
             title: '✉️ Contato',
             content: `
@@ -92,16 +92,16 @@ function openContentPage(page) {
                     <div class="content-section">
                         <h3>Redes Sociais</h3>
                         <div class="social-links">
-                            <a href="#" class="social-link">📘 Facebook</a>
-                            <a href="#" class="social-link">📸 Instagram</a>
-                            <a href="#" class="social-link">🐦 Twitter</a>
-                            <a href="#" class="social-link">▶️ YouTube</a>
-                        </div>
+    <a href="https://facebook.com/seu-perfil" target="_blank" class="social-link">📘 Facebook</a>
+    <a href="https://instagram.com/seu-perfil" target="_blank" class="social-link">📸 Instagram</a>
+    <a href="https://twitter.com/seu-perfil" target="_blank" class="social-link">🐦 Twitter</a>
+    <a href="http://www.youtube.com/@jairocaetano1" target="_blank" class="social-link">▶️ YouTube</a>
+</div>
                     </div>
                 </div>
             `
         },
-        
+
         noticias: {
             title: '📰 Notícias e Atualizações',
             content: `
@@ -147,7 +147,7 @@ function openContentPage(page) {
                 </div>
             `
         },
-        
+
         doar: {
             title: '❤️ Apoie o Projeto',
             content: `
@@ -213,10 +213,10 @@ function openContentPage(page) {
             `
         }
     };
-    
+
     const pageData = pages[page];
     if (!pageData) return;
-    
+
     title.innerHTML = pageData.title;
     body.innerHTML = pageData.content;
     modal.style.display = 'flex';
