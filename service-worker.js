@@ -21,23 +21,17 @@ const ASSETS_TO_CACHE = [
     'js/app.js'
 ];
 
-// Instalar o Service Worker
+// ============ SERVICE WORKER - SOLA VERBO ============
+const CACHE_NAME = 'sola-verbo-v5';
+
+// Instalar
 self.addEventListener('install', event => {
     console.log('📦 Service Worker instalando...');
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                console.log('🗂️ Cacheando assets...');
-                return cache.addAll(ASSETS_TO_CACHE);
-            })
-            .then(() => {
-                console.log('✅ Assets cacheados com sucesso!');
-                return self.skipWaiting();
-            })
-    );
+    // Pular waiting para ativar imediatamente
+    self.skipWaiting();
 });
 
-// Ativar o Service Worker
+// Ativar
 self.addEventListener('activate', event => {
     console.log('🚀 Service Worker ativado!');
     event.waitUntil(
@@ -56,26 +50,15 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Interceptar requisições - Cache First para dados, Network First para JSONs
+// Fetch - Cache conforme usa (sem addAll)
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     
-    // Para arquivos JSON (dados da Bíblia) - Network First
-    if (url.pathname.endsWith('.json')) {
+    // Para JSONs da Bíblia - Network First, sem cache
+    if (url.pathname.includes('/data/') && url.pathname.endsWith('.json')) {
         event.respondWith(
             fetch(event.request)
-                .then(response => {
-                    // Clonar resposta para cache
-                    const clonedResponse = response.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, clonedResponse);
-                    });
-                    return response;
-                })
-                .catch(() => {
-                    // Se offline, tentar cache
-                    return caches.match(event.request);
-                })
+                .catch(() => caches.match(event.request))
         );
         return;
     }
@@ -88,19 +71,17 @@ self.addEventListener('fetch', event => {
                     return cachedResponse;
                 }
                 return fetch(event.request).then(response => {
-                    const clonedResponse = response.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, clonedResponse);
-                    });
+                    // Só cachear respostas válidas
+                    if (response && response.status === 200 && response.type === 'basic') {
+                        const clonedResponse = response.clone();
+                        caches.open(CACHE_NAME).then(cache => {
+                            try {
+                                cache.put(event.request, clonedResponse);
+                            } catch(e) {}
+                        });
+                    }
                     return response;
                 });
             })
     );
-});
-
-// Mensagem de atualização
-self.addEventListener('message', event => {
-    if (event.data === 'skipWaiting') {
-        self.skipWaiting();
-    }
 });
