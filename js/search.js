@@ -164,6 +164,19 @@ function performSearch() {
     addToSearchHistory(term, appState.searchResults.length);
     if (appState.searchResults.length > 0) { document.querySelector('.search-results-nav').style.display = 'flex'; let info = appState.searchFilter.book !== 'all' ? `em ${appState.searchFilter.book}` : appState.searchFilter.testament !== 'all' ? (appState.searchFilter.testament === 'old' ? 'no AT' : 'no NT') : ''; document.getElementById('search-info').textContent = `"${term}" ${info}`; navigateToNextResult(); }
     else { alert(`Nenhum resultado para "${term}"`); document.querySelector('.search-results-nav').style.display = 'none'; }
+
+    // Após encontrar resultados, mostrar página de resultados
+if (appState.searchResults.length > 0) {
+    document.querySelector('.search-results-nav').style.display = 'flex';
+    let info = appState.searchFilter.book !== 'all' ? `em ${appState.searchFilter.book}` : 
+               appState.searchFilter.testament !== 'all' ? (appState.searchFilter.testament === 'old' ? 'no AT' : 'no NT') : '';
+    document.getElementById('search-info').textContent = `"${term}" ${info}`;
+    
+    // Mostrar página de resultados em vez de navegar
+    showSearchResultsPage();
+    
+    navigateToNextResult(); // Mantém para compatibilidade
+}
 }
 function navigateToNextResult() { if (!appState.searchResults.length) return; appState.currentSearchIndex = (appState.currentSearchIndex + 1) % appState.searchResults.length; navigateToResult(); }
 function navigateToPrevResult() { if (!appState.searchResults.length) return; appState.currentSearchIndex = (appState.currentSearchIndex - 1 + appState.searchResults.length) % appState.searchResults.length; navigateToResult(); }

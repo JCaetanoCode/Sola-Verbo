@@ -192,6 +192,28 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Página de Resultados da Busca -->
+<div id="search-results-page" class="search-results-page" style="display:none;">
+    <div class="search-results-header">
+        <button id="back-from-results" class="back-button">← Voltar</button>
+        <h2>Resultados da Busca</h2>
+        <div class="search-results-summary" id="search-results-summary"></div>
+    </div>
+    
+    <div class="search-results-layout">
+        <!-- Sidebar de Ocorrências -->
+        <aside class="search-results-sidebar" id="search-results-sidebar">
+            <h3>📊 Ocorrências por Livro</h3>
+            <div id="results-occurrences-list"></div>
+        </aside>
+        
+        <!-- Lista de Resultados -->
+        <div class="search-results-main" id="search-results-main">
+            <div id="results-list"></div>
+        </div>
+    </div>
+</div>
             </main>
 
             <!-- Modal de Nota -->
@@ -367,6 +389,7 @@
         <script src="js/app.js"></script>
         <script src="js/audio.js"></script>
         <script src="js/pages.js"></script>
+        <script src="js/results.js"></script>
 
     </body>
 </html>

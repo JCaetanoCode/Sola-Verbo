@@ -29,6 +29,12 @@ function setupEventListeners() {
         document.querySelector('.nav-item[data-tab="old"]').classList.add('active');
         appState.currentTestament = 'old';
         goHome();
+
+        // Adicionar listener para voltar da página de resultados
+document.getElementById('back-from-results').addEventListener('click', () => {
+    hideSearchResultsPage();
+    document.getElementById('chapter-content').style.display = 'block';
+});
     });
 
     // Navegação por abas
