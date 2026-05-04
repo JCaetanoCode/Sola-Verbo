@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderBookList();
         loadSearchHistory();
         updateBookFilter();
-        
+
         // Aplicar zoom inicial
         applyZoom(currentZoom);
     } catch (e) {

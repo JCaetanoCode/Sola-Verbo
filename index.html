@@ -1,171 +1,211 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#C9A84C">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Sola Verbo">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sola Verbo - Bíblia de Estudo</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <header class="app-header">
-            <div class="header-top">
-                <h1>📖 Sola Verbo</h1>
-                <span class="header-verse">"Porque a palavra de Deus é viva e eficaz..." <small>Hb 4:12</small></span>
-            </div>
-            <div class="search-filters">
-                <select id="version-selector" class="filter-select version-select">
-                    <option value="ACF">ACF</option>
-                    <option value="ARA">ARA</option>
-                    <option value="ARC">ARC</option>
-                    <option value="AS21">AS21</option>
-                    <option value="JFAA">JFAA</option>
-                    <option value="KJA">KJA</option>
-                    <option value="KJF">KJF</option>
-                    <option value="NAA">NAA</option>
-                    <option value="NBV">NBV</option>
-                    <option value="NTLH">NTLH</option>
-                    <option value="NVI">NVI</option>
-                    <option value="NVT">NVT</option>
-                    <option value="TB">TB</option>
-                </select>
-                <select id="filter-testament" class="filter-select">
-                    <option value="all">Toda a Bíblia</option>
-                    <option value="old">Antigo Testamento</option>
-                    <option value="new">Novo Testamento</option>
-                </select>
-                <select id="filter-book" class="filter-select">
-                    <option value="all">Todos os livros</option>
-                </select>
-                <select id="filter-chapter" class="filter-select" disabled>
-                    <option value="all">Todos os capítulos</option>
-                </select>
-                <select id="filter-verse" class="filter-select" disabled>
-                    <option value="all">Todos os versículos</option>
-                </select>
-            </div>
-        </header>
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#C9A84C">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Sola Verbo">
+        <link rel="apple-touch-icon" href="icon-192.png">
 
-        <nav class="nav-menu">
-            <button class="nav-item active" data-tab="old">Antigo Testamento</button>
-            <button class="nav-item" data-tab="new">Novo Testamento</button>
-            <button class="nav-item" data-tab="search">🔍 Busca</button>
-            <button class="nav-item" data-tab="compare">📋 Comparar</button>
-        </nav>
-
-        <main class="main-content">
-            <!-- Lista de Livros -->
-            <div id="book-list" class="book-list">
-                <div class="loading">Carregando livros</div>
-            </div>
-
-            <!-- Conteúdo do Capítulo -->
-            <div id="chapter-content" class="chapter-content" style="display:none;">
-                <div class="chapter-header">
-                    <button id="back-button" class="back-button">← Voltar</button>
-                    <button id="prev-chapter-btn" class="nav-chapter-btn" title="Capítulo anterior">◀</button>
-                    <h2 id="chapter-title"></h2>
-                    <button id="next-chapter-btn" class="nav-chapter-btn" title="Próximo capítulo">▶</button>
-                    <div class="zoom-controls">
-                        <button id="zoom-out-btn" class="zoom-btn" title="Diminuir texto">A-</button>
-                        <span id="zoom-level" class="zoom-level">100%</span>
-                        <button id="zoom-in-btn" class="zoom-btn" title="Aumentar texto">A+</button>
-                        <button id="zoom-reset-btn" class="zoom-btn" title="Restaurar tamanho">↺</button>
-                    </div>
-                    <div class="audio-controls">
-                        <button id="play-chapter" class="audio-button" title="Ouvir capítulo">🔊</button>
-                        <button id="pause-chapter" class="audio-button" title="Pausar" style="display:none;">⏸️</button>
-                        <button id="stop-chapter" class="audio-button" title="Parar" style="display:none;">⏹️</button>
-                        <select id="audio-speed" class="audio-speed" title="Velocidade">
-                            <option value="0.5">0.5x</option>
-                            <option value="0.75">0.75x</option>
-                            <option value="1" selected>1x</option>
-                            <option value="1.25">1.25x</option>
-                            <option value="1.5">1.5x</option>
-                            <option value="2">2x</option>
-                        </select>
-                    </div>
-                    <div class="search-results-nav" style="display:none;">
-                        <button id="prev-result" class="nav-result">↑</button>
-                        <span id="result-counter">0 de 0</span>
-                        <button id="next-result" class="nav-result">↓</button>
-                        <button id="show-occurrences" class="occurrences-button">📊</button>
-                        <button id="clear-search" class="clear-search-button">✕ Limpar</button>
-                        <span class="search-info" id="search-info"></span>
-                    </div>
+        <title>Sola Verbo - Bíblia de Estudo</title>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <header class="app-header">
+                <div class="header-top">
+                    <h1>📖 Sola Verbo</h1>
+                    <span
+                        class="header-verse">"Porque a palavra de Deus é viva e eficaz..."
+                        <small>Hb 4:12</small></span>
                 </div>
-                <div id="verses-container"></div>
-            </div>
+                <div class="search-filters">
+                    <select id="version-selector"
+                        class="filter-select version-select">
+                        <option value="ACF">ACF</option>
+                        <option value="ARA">ARA</option>
+                        <option value="ARC">ARC</option>
+                        <option value="AS21">AS21</option>
+                        <option value="JFAA">JFAA</option>
+                        <option value="KJA">KJA</option>
+                        <option value="KJF">KJF</option>
+                        <option value="NAA">NAA</option>
+                        <option value="NBV">NBV</option>
+                        <option value="NTLH">NTLH</option>
+                        <option value="NVI">NVI</option>
+                        <option value="NVT">NVT</option>
+                        <option value="TB">TB</option>
+                    </select>
+                    <select id="filter-testament" class="filter-select">
+                        <option value="all">Toda a Bíblia</option>
+                        <option value="old">Antigo Testamento</option>
+                        <option value="new">Novo Testamento</option>
+                    </select>
+                    <select id="filter-book" class="filter-select">
+                        <option value="all">Todos os livros</option>
+                    </select>
+                    <select id="filter-chapter" class="filter-select" disabled>
+                        <option value="all">Todos os capítulos</option>
+                    </select>
+                    <select id="filter-verse" class="filter-select" disabled>
+                        <option value="all">Todos os versículos</option>
+                    </select>
+                </div>
+            </header>
 
-            <!-- Aba de Busca -->
-            <div id="search-view" class="search-view" style="display:none;">
-                <div class="search-page-container">
-                    <div class="search-hero" id="search-hero">
-                        <h2>🔍 Busca na Bíblia</h2>
-                        <p>Pesquise palavras, frases ou temas em toda a Escritura</p>
-                        <div class="search-bar-large">
-                            <input type="text" id="search-input-main" class="search-input-large" placeholder="Digite sua busca..." autocomplete="off">
-                            <div id="search-history" class="search-history"></div>
-                            <button id="search-button-main" class="search-button-large">🔍 Buscar</button>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="old">Antigo
+                    Testamento</button>
+                <button class="nav-item" data-tab="new">Novo Testamento</button>
+                <button class="nav-item" data-tab="search">🔍 Busca</button>
+                <button class="nav-item" data-tab="compare">📋 Comparar</button>
+            </nav>
+
+            <main class="main-content">
+                <!-- Lista de Livros -->
+                <div id="book-list" class="book-list">
+                    <div class="loading">Carregando livros</div>
+                </div>
+
+                <!-- Conteúdo do Capítulo -->
+                <div id="chapter-content" class="chapter-content"
+                    style="display:none;">
+                    <div class="chapter-header">
+                        <button id="back-button" class="back-button">←
+                            Voltar</button>
+                        <button id="prev-chapter-btn" class="nav-chapter-btn"
+                            title="Capítulo anterior">◀</button>
+                        <h2 id="chapter-title"></h2>
+                        <button id="next-chapter-btn" class="nav-chapter-btn"
+                            title="Próximo capítulo">▶</button>
+                        <div class="zoom-controls">
+                            <button id="zoom-out-btn" class="zoom-btn"
+                                title="Diminuir texto">A-</button>
+                            <span id="zoom-level" class="zoom-level">100%</span>
+                            <button id="zoom-in-btn" class="zoom-btn"
+                                title="Aumentar texto">A+</button>
+                            <button id="zoom-reset-btn" class="zoom-btn"
+                                title="Restaurar tamanho">↺</button>
                         </div>
-                        <div class="search-actions-bar">
-                            <button id="home-button" class="action-button" title="Início">🏠</button>
-                            <button id="favorites-button" class="action-button" title="Favoritos">⭐</button>
-                            <button id="dictionary-button" class="action-button" title="Dicionário">📚</button>
-                            <button id="scroll-top-button" class="action-button" title="Voltar ao topo">⬆️</button>
+                        <div class="audio-controls">
+                            <button id="play-chapter" class="audio-button"
+                                title="Ouvir capítulo">🔊</button>
+                            <button id="pause-chapter" class="audio-button"
+                                title="Pausar" style="display:none;">⏸️</button>
+                            <button id="stop-chapter" class="audio-button"
+                                title="Parar" style="display:none;">⏹️</button>
+                            <select id="audio-speed" class="audio-speed"
+                                title="Velocidade">
+                                <option value="0.5">0.5x</option>
+                                <option value="0.75">0.75x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
+                        <div class="search-results-nav" style="display:none;">
+                            <button id="prev-result"
+                                class="nav-result">↑</button>
+                            <span id="result-counter">0 de 0</span>
+                            <button id="next-result"
+                                class="nav-result">↓</button>
+                            <button id="show-occurrences"
+                                class="occurrences-button">📊</button>
+                            <button id="clear-search"
+                                class="clear-search-button">✕ Limpar</button>
+                            <span class="search-info" id="search-info"></span>
                         </div>
                     </div>
+                    <div id="verses-container"></div>
+                </div>
 
-                    <div id="search-results-page" class="search-results-page" style="display:none;">
-                        <div class="search-results-header">
-                            <button id="back-from-results" class="back-button">← Nova Busca</button>
-                            <h2>Resultados da Busca</h2>
-                            <div class="search-results-summary" id="search-results-summary"></div>
+                <!-- Aba de Busca -->
+                <div id="search-view" class="search-view" style="display:none;">
+                    <div class="search-page-container">
+                        <div class="search-hero" id="search-hero">
+                            <h2>🔍 Busca na Bíblia</h2>
+                            <p>Pesquise palavras, frases ou temas em toda a
+                                Escritura</p>
+                            <div class="search-bar-large">
+                                <input type="text" id="search-input-main"
+                                    class="search-input-large"
+                                    placeholder="Digite sua busca..."
+                                    autocomplete="off">
+                                <div id="search-history"
+                                    class="search-history"></div>
+                                <button id="search-button-main"
+                                    class="search-button-large">🔍
+                                    Buscar</button>
+                            </div>
+                            <div class="search-actions-bar">
+                                <button id="home-button" class="action-button"
+                                    title="Início">🏠</button>
+                                <button id="favorites-button"
+                                    class="action-button"
+                                    title="Favoritos">⭐</button>
+                                <button id="dictionary-button"
+                                    class="action-button"
+                                    title="Dicionário">📚</button>
+                                <button id="scroll-top-button"
+                                    class="action-button"
+                                    title="Voltar ao topo">⬆️</button>
+                            </div>
                         </div>
-                        <div class="search-results-layout">
-                            <aside class="search-results-sidebar" id="search-results-sidebar">
-                                <h3>📊 Ocorrências por Livro</h3>
-                                <div id="results-occurrences-list"></div>
-                            </aside>
-                            <div class="search-results-main" id="search-results-main">
-                                <div id="results-list"></div>
+
+                        <div id="search-results-page"
+                            class="search-results-page" style="display:none;">
+                            <div class="search-results-header">
+                                <button id="back-from-results"
+                                    class="back-button">← Nova Busca</button>
+                                <h2>Resultados da Busca</h2>
+                                <div class="search-results-summary"
+                                    id="search-results-summary"></div>
+                            </div>
+                            <div class="search-results-layout">
+                                <aside class="search-results-sidebar"
+                                    id="search-results-sidebar">
+                                    <h3>📊 Ocorrências por Livro</h3>
+                                    <div id="results-occurrences-list"></div>
+                                </aside>
+                                <div class="search-results-main"
+                                    id="search-results-main">
+                                    <div id="results-list"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Aba de Comparação -->
-            <div id="compare-view-full" class="compare-view-full" style="display:none;">
-                <!-- ... (mantém igual) ... -->
-            </div>
-        </main>
+                <!-- Aba de Comparação -->
+                <div id="compare-view-full" class="compare-view-full"
+                    style="display:none;">
+                    <!-- ... (mantém igual) ... -->
+                </div>
+            </main>
 
-        <!-- Modais e Rodapé (mantém igual) -->
-        <!-- ... -->
-    </div>
+            <!-- Modais e Rodapé (mantém igual) -->
+            <!-- ... -->
+        </div>
 
-    <!-- Scripts -->
-    <script src="js/config.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/results.js"></script>
-    <script src="js/study.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/pages.js"></script>
-    <script src="js/app.js"></script>
-</body>
+        <!-- Scripts -->
+        <script src="js/config.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/navigation.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/results.js"></script>
+        <script src="js/study.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/audio.js"></script>
+        <script src="js/pages.js"></script>
+        <script src="js/app.js"></script>
+    </body>
 </html>

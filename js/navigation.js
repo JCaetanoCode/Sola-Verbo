@@ -249,10 +249,21 @@ function loadChapter(chapterIndex) {
     `;
     paragraphDiv.appendChild(chapterEnd);
 
+    // ===== BOTÃO VOLTAR AO TOPO =====
+    const backToTopDiv = document.createElement('div');
+    backToTopDiv.className = 'back-to-top-container';
+    backToTopDiv.innerHTML = `
+        <button class="back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">
+            ⬆️ Voltar ao Topo
+        </button>
+    `;
+    paragraphDiv.appendChild(backToTopDiv);
+
     vc.appendChild(paragraphDiv);
 
     // Atualizar navegação
     updateChapterNavButtons();
+    // ... resto do código
 
     // Mostrar botões de navegação
     const prevBtn = document.getElementById('prev-chapter-btn');
