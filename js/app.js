@@ -219,16 +219,57 @@ function setupEventListeners() {
     if (dictSearch) dictSearch.addEventListener('input', searchDictionary);
 
     // Navegação de capítulos
-const prevChapterBtn = document.getElementById('prev-chapter-btn');
-const nextChapterBtn = document.getElementById('next-chapter-btn');
+    const prevChapterBtn = document.getElementById('prev-chapter-btn');
+    const nextChapterBtn = document.getElementById('next-chapter-btn');
 
-if (prevChapterBtn) {
-    prevChapterBtn.addEventListener('click', () => navigateChapter(-1));
+    if (prevChapterBtn) {
+        prevChapterBtn.addEventListener('click', () => navigateChapter(-1));
+    }
+
+    if (nextChapterBtn) {
+        nextChapterBtn.addEventListener('click', () => navigateChapter(1));
+    }
+
+    // ============ CONTROLES DE ZOOM ============
+let currentZoom = parseInt(localStorage.getItem('bibleZoom') || '100');
+
+const zoomOutBtn = document.getElementById('zoom-out-btn');
+const zoomInBtn = document.getElementById('zoom-in-btn');
+const zoomResetBtn = document.getElementById('zoom-reset-btn');
+const zoomLevel = document.getElementById('zoom-level');
+
+function applyZoom(level) {
+    currentZoom = Math.max(60, Math.min(200, level)); // Limitar entre 60% e 200%
+    const paragraph = document.querySelector('.verses-paragraph');
+    if (paragraph) {
+        paragraph.style.fontSize = `${currentZoom}%`;
+    }
+    if (zoomLevel) {
+        zoomLevel.textContent = `${currentZoom}%`;
+    }
+    localStorage.setItem('bibleZoom', currentZoom.toString());
 }
 
-if (nextChapterBtn) {
-    nextChapterBtn.addEventListener('click', () => navigateChapter(1));
+if (zoomOutBtn) {
+    zoomOutBtn.addEventListener('click', () => applyZoom(currentZoom - 10));
 }
+
+if (zoomInBtn) {
+    zoomInBtn.addEventListener('click', () => applyZoom(currentZoom + 10));
+}
+
+if (zoomResetBtn) {
+    zoomResetBtn.addEventListener('click', () => applyZoom(100));
+}
+
+if (zoomLevel) {
+    zoomLevel.addEventListener('click', () => applyZoom(100));
+}
+
+// Aplicar zoom salvo ao carregar
+document.addEventListener('DOMContentLoaded', () => {
+    applyZoom(currentZoom);
+});
 }
 
 // ============ COMPARAÇÃO ============

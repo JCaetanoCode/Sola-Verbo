@@ -12,8 +12,9 @@
             content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="Sola Verbo">
         <link rel="apple-touch-icon" href="icon-192.png">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <title>Sola Verbo - Bíblia de Estudo</title>
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -79,28 +80,42 @@
                 <!-- Conteúdo do Capítulo -->
                 <div id="chapter-content" class="chapter-content"
                     style="display:none;">
+
+
                     <div class="chapter-header">
     <button id="back-button" class="back-button">← Voltar</button>
     <button id="prev-chapter-btn" class="nav-chapter-btn" title="Capítulo anterior">◀</button>
     <h2 id="chapter-title"></h2>
     <button id="next-chapter-btn" class="nav-chapter-btn" title="Próximo capítulo">▶</button>
-    <div class="audio-controls">
-        <button id="play-chapter" class="audio-button" title="Ouvir capítulo">🔊</button>
-        <button id="pause-chapter" class="audio-button" title="Pausar" style="display:none;">⏸️</button>
-        <button id="stop-chapter" class="audio-button" title="Parar" style="display:none;">⏹️</button>
-        <select id="audio-speed" class="audio-speed" title="Velocidade">
-            <option value="0.5">0.5x</option>
-            <option value="0.75">0.75x</option>
-            <option value="1" selected>1x</option>
-            <option value="1.25">1.25x</option>
-            <option value="1.5">1.5x</option>
-            <option value="2">2x</option>
-        </select>
+    <div class="zoom-controls">
+        <button id="zoom-out-btn" class="zoom-btn" title="Diminuir texto">A-</button>
+        <span id="zoom-level" class="zoom-level">100%</span>
+        <button id="zoom-in-btn" class="zoom-btn" title="Aumentar texto">A+</button>
+        <button id="zoom-reset-btn" class="zoom-btn" title="Restaurar tamanho">↺</button>
     </div>
-    <div class="search-results-nav" style="display:none;">
-        <!-- ... resto ... -->
-    </div>
-</div>
+
+
+                        <div class="audio-controls">
+                            <button id="play-chapter" class="audio-button"
+                                title="Ouvir capítulo">🔊</button>
+                            <button id="pause-chapter" class="audio-button"
+                                title="Pausar" style="display:none;">⏸️</button>
+                            <button id="stop-chapter" class="audio-button"
+                                title="Parar" style="display:none;">⏹️</button>
+                            <select id="audio-speed" class="audio-speed"
+                                title="Velocidade">
+                                <option value="0.5">0.5x</option>
+                                <option value="0.75">0.75x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
+                        <div class="search-results-nav" style="display:none;">
+                            <!-- ... resto ... -->
+                        </div>
+                    </div>
                     <div id="verses-container"></div>
                 </div>
 

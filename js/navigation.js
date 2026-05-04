@@ -154,93 +154,93 @@ function loadChapter(chapterIndex) {
         paragraphDiv.appendChild(firstVerseSpan);
 
         // ============ DETECTOR DE PARÁGRAFOS ============
-function isParagraphStart(verseText, previousVerseText) {
-    if (!verseText) return false;
-    
-    const text = verseText.trim();
-    
-    // Palavras/frases que indicam início de parágrafo
-    const paragraphStarters = [
-        /^E\s+(disse|falou|chamou|havia|aconteceu|sucedeu)/i,
-        /^Então\s/i,
-        /^Depois\s+(destas|disso| disto)/i,
-        /^Ora,\s/i,
-        /^Assim\s+(diz|começou|terminou)/i,
-        /^No\s+(princípio|dia|tempo|ano)/i,
-        /^Eis\s+que\s/i,
-        /^Disse\s+(Deus|Jesus|o Senhor|o SENHOR)/i,
-        /^Respondeu\s/i,
-        /^Perguntou\s/i,
-        /^Exclamou\s/i,
-        /^Ordenou\s/i,
-        /^E\s+foi\s+(a tarde|a manhã)/i,
-        /^Estas\s+(são|foram)/i,
-        /^São\s+estas/i,
-        /^E\s+(os|as)\s+(filhos|nomes|gerações)/i,
-        /^Haja\s/i,
-        /^Produza\s/i,
-        /^Ajuntem-se\s/i,
-        /^Apareça\s/i,
-        /^Façamos\s/i,
-        /^Não\s+(é|são|seja)/i
-    ];
-    
-    for (const pattern of paragraphStarters) {
-        if (pattern.test(text)) {
-            return true;
+        function isParagraphStart(verseText, previousVerseText) {
+            if (!verseText) return false;
+
+            const text = verseText.trim();
+
+            // Palavras/frases que indicam início de parágrafo
+            const paragraphStarters = [
+                /^E\s+(disse|falou|chamou|havia|aconteceu|sucedeu)/i,
+                /^Então\s/i,
+                /^Depois\s+(destas|disso| disto)/i,
+                /^Ora,\s/i,
+                /^Assim\s+(diz|começou|terminou)/i,
+                /^No\s+(princípio|dia|tempo|ano)/i,
+                /^Eis\s+que\s/i,
+                /^Disse\s+(Deus|Jesus|o Senhor|o SENHOR)/i,
+                /^Respondeu\s/i,
+                /^Perguntou\s/i,
+                /^Exclamou\s/i,
+                /^Ordenou\s/i,
+                /^E\s+foi\s+(a tarde|a manhã)/i,
+                /^Estas\s+(são|foram)/i,
+                /^São\s+estas/i,
+                /^E\s+(os|as)\s+(filhos|nomes|gerações)/i,
+                /^Haja\s/i,
+                /^Produza\s/i,
+                /^Ajuntem-se\s/i,
+                /^Apareça\s/i,
+                /^Façamos\s/i,
+                /^Não\s+(é|são|seja)/i
+            ];
+
+            for (const pattern of paragraphStarters) {
+                if (pattern.test(text)) {
+                    return true;
+                }
+            }
+
+            // Se o versículo anterior terminou com ponto final e este começa com letra maiúscula após um assunto diferente
+            if (previousVerseText && previousVerseText.trim().endsWith('.') &&
+                text.charAt(0) === text.charAt(0).toUpperCase() &&
+                text.charAt(0).match(/[A-ZÀ-Ú]/)) {
+                // Verificar se é uma continuação natural ou novo parágrafo
+                if (!text.match(/^(e|ou|mas|porém|todavia|contudo|porque|pois|também|assim|desta|deste|para|com|em|no|na|os|as|o|a|um|uma)\s/i)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
-    }
-    
-    // Se o versículo anterior terminou com ponto final e este começa com letra maiúscula após um assunto diferente
-    if (previousVerseText && previousVerseText.trim().endsWith('.') && 
-        text.charAt(0) === text.charAt(0).toUpperCase() && 
-        text.charAt(0).match(/[A-ZÀ-Ú]/)) {
-        // Verificar se é uma continuação natural ou novo parágrafo
-        if (!text.match(/^(e|ou|mas|porém|todavia|contudo|porque|pois|também|assim|desta|deste|para|com|em|no|na|os|as|o|a|um|uma)\s/i)) {
-            return true;
-        }
-    }
-    
-    return false;
-}
     }
 
     // ===== DEMAIS VERSÍCULOS =====
-   // Dentro do loadChapter, substitua o forEach dos demais versículos:
+    // Dentro do loadChapter, substitua o forEach dos demais versículos:
 
-// ===== DEMAIS VERSÍCULOS =====
-chapterVerses.slice(1).forEach((verse, vi) => {
-    const actualIndex = vi + 1;
-    const key = getVerseKey(bd.name, chapterIndex+1, actualIndex+1);
-    const mc = appState.markers[key] || '';
-    const hn = appState.notes[key] ? true : false;
-    const hc = appState.crossrefDB[key] && appState.crossrefDB[key].length > 0;
-    
-    // Verificar se é início de parágrafo
-    const previousVerse = chapterVerses[actualIndex - 1] || '';
-    const isNewParagraph = isParagraphStart(verse, previousVerse);
-    
-    const verseSpan = document.createElement('span');
-    verseSpan.className = 'verse-inline';
-    if (isNewParagraph) verseSpan.classList.add('paragraph-start');
-    verseSpan.id = `verse-${actualIndex}`;
-    if (hn) verseSpan.classList.add('verse-has-note-inline');
-    if (hc) verseSpan.classList.add('verse-has-crossref-inline');
-    if (mc) verseSpan.style.background = `var(--marker-${mc})`;
-    
-    verseSpan.innerHTML = `
+    // ===== DEMAIS VERSÍCULOS =====
+    chapterVerses.slice(1).forEach((verse, vi) => {
+        const actualIndex = vi + 1;
+        const key = getVerseKey(bd.name, chapterIndex + 1, actualIndex + 1);
+        const mc = appState.markers[key] || '';
+        const hn = appState.notes[key] ? true : false;
+        const hc = appState.crossrefDB[key] && appState.crossrefDB[key].length > 0;
+
+        // Verificar se é início de parágrafo
+        const previousVerse = chapterVerses[actualIndex - 1] || '';
+        const isNewParagraph = isParagraphStart(verse, previousVerse);
+
+        const verseSpan = document.createElement('span');
+        verseSpan.className = 'verse-inline';
+        if (isNewParagraph) verseSpan.classList.add('paragraph-start');
+        verseSpan.id = `verse-${actualIndex}`;
+        if (hn) verseSpan.classList.add('verse-has-note-inline');
+        if (hc) verseSpan.classList.add('verse-has-crossref-inline');
+        if (mc) verseSpan.style.background = `var(--marker-${mc})`;
+
+        verseSpan.innerHTML = `
         ${isNewParagraph ? '<span class="paragraph-marker" title="Início de parágrafo">¶</span>' : ''}
-        <sup class="verse-number-inline" data-verse="${actualIndex+1}" onclick="event.stopPropagation(); playVerseAudio(${actualIndex})">${actualIndex+1}</sup>
+        <sup class="verse-number-inline" data-verse="${actualIndex + 1}" onclick="event.stopPropagation(); playVerseAudio(${actualIndex})">${actualIndex + 1}</sup>
         <span class="verse-text-inline">${verse || '&nbsp;'}</span>
         <span class="verse-actions-inline">
             <button class="verse-action-btn-inline" onclick="event.stopPropagation(); playVerseAudio(${actualIndex})" title="Ouvir">🔊</button>
-            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openNoteModal('${bd.name.replace(/'/g,"\\'")}',${chapterIndex+1},${actualIndex+1})" title="Nota">📝</button>
-            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openCrossrefModal('${bd.name.replace(/'/g,"\\'")}',${chapterIndex+1},${actualIndex+1})" title="Referências">🔗</button>
-            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); toggleFavorite('${bd.name.replace(/'/g,"\\'")}',${chapterIndex+1},${actualIndex+1},this)" title="Favorito">${isFavorite(bd.name,chapterIndex+1,actualIndex+1)?'⭐':'☆'}</button>
+            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openNoteModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${actualIndex + 1})" title="Nota">📝</button>
+            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openCrossrefModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${actualIndex + 1})" title="Referências">🔗</button>
+            <button class="verse-action-btn-inline" onclick="event.stopPropagation(); toggleFavorite('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${actualIndex + 1},this)" title="Favorito">${isFavorite(bd.name, chapterIndex + 1, actualIndex + 1) ? '⭐' : '☆'}</button>
         </span>
     `;
-    paragraphDiv.appendChild(verseSpan);
-});
+        paragraphDiv.appendChild(verseSpan);
+    });
 
     // ===== INDICADOR DE FIM DE CAPÍTULO =====
     const chapterEnd = document.createElement('div');
@@ -276,10 +276,18 @@ chapterVerses.slice(1).forEach((verse, vi) => {
     if (appState.compareMode) { document.getElementById('compare-view').classList.add('active'); renderCompareView(); }
 
     // Mostrar botões de navegação
-const prevBtn = document.getElementById('prev-chapter-btn');
-const nextBtn = document.getElementById('next-chapter-btn');
-if (prevBtn) prevBtn.style.display = 'flex';
-if (nextBtn) nextBtn.style.display = 'flex';
+    const prevBtn = document.getElementById('prev-chapter-btn');
+    const nextBtn = document.getElementById('next-chapter-btn');
+    if (prevBtn) prevBtn.style.display = 'flex';
+    if (nextBtn) nextBtn.style.display = 'flex';
+
+    // Aplicar zoom salvo
+    if (typeof currentZoom !== 'undefined') {
+        const paragraph = document.querySelector('.verses-paragraph');
+        if (paragraph) {
+            paragraph.style.fontSize = `${currentZoom}%`;
+        }
+    }
 }
 
 // Highlight para parágrafo
@@ -435,7 +443,7 @@ function updateChapterNavButtons() {
 function toggleParagraphMarkers() {
     const paragraph = document.querySelector('.verses-paragraph');
     if (!paragraph) return;
-    
+
     if (paragraph.classList.contains('show-paragraph-markers')) {
         paragraph.classList.remove('show-paragraph-markers');
         paragraph.classList.add('hide-paragraph-markers');

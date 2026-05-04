@@ -739,3 +739,63 @@ mark { background-color: var(--search-hl); color: var(--gold-light); padding: 1p
 .hide-paragraph-markers .paragraph-marker {
     opacity: 0;
 }
+
+/* ============ CONTROLES DE ZOOM ============ */
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg4);
+    border-radius: var(--radius-sm);
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+}
+
+.zoom-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text2);
+    border: none;
+    font-size: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-btn:hover {
+    background: var(--gold-dark);
+    color: var(--gold-light);
+}
+
+.zoom-btn:active {
+    transform: scale(0.9);
+}
+
+.zoom-level {
+    color: var(--text3);
+    font-size: 0.7rem;
+    min-width: 36px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.zoom-level:hover {
+    color: var(--gold-light);
+}
+
+.verses-paragraph {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    line-height: 2.2;
+    text-align: justify;
+    font-size: 95%;
+    color: var(--text);
+    transition: font-size 0.3s ease;
+}
