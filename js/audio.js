@@ -156,20 +156,26 @@ function speakCurrentVerse() {
 }
 
 // Tocar versículo individual
+// Tocar versículo individual (modo parágrafo)
 function playVerseAudio(verseIndex) {
     if (!checkTTS()) {
         alert('Seu navegador não suporta leitura em voz alta.');
         return;
     }
     
+    if (!appState.currentBook || appState.currentChapter === null) return;
+    
     const bookData = findBook(appState.currentBook.name);
-    if (!bookData || !bookData.chapters[appState.currentChapter]) return;
+    if (!bookData) return;
+    
+    const chaptersArray = Array.isArray(bookData.chapters) ? bookData.chapters : Object.values(bookData.chapters);
+    if (!chaptersArray[appState.currentChapter]) return;
+    
+    const verse = chaptersArray[appState.currentChapter][verseIndex];
+    if (!verse) return;
     
     // Parar áudio do capítulo se estiver tocando
     stopChapterAudio();
-    
-    const verse = bookData.chapters[appState.currentChapter][verseIndex];
-    if (!verse) return;
     
     const utterance = new SpeechSynthesisUtterance(verse);
     utterance.voice = getPortugueseVoice();

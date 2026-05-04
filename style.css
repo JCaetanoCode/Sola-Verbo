@@ -484,3 +484,258 @@ mark { background-color: var(--search-hl); color: var(--gold-light); padding: 1p
     .category-grid { grid-template-columns: repeat(6, 1fr); }
     .chapter-navigation { grid-template-columns: repeat(8, 1fr); }
 }
+
+/* ============ VERSÍCULOS EM PARÁGRAFO ============ */
+.paragraph-toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.toolbar-btn {
+    background: var(--bg4);
+    color: var(--text2);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: var(--gold-dark);
+    color: var(--gold-light);
+    border-color: var(--border2);
+}
+
+.verses-paragraph {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    line-height: 2.2;
+    text-align: justify;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.verse-inline {
+    position: relative;
+    transition: background 0.3s;
+    border-radius: 3px;
+    padding: 1px 2px;
+    cursor: pointer;
+}
+
+.verse-inline:hover {
+    background: rgba(201, 168, 76, 0.1);
+    outline: 1px solid var(--border);
+}
+
+.verse-inline.selected-for-marker {
+    outline: 2px solid var(--gold) !important;
+    background: rgba(201, 168, 76, 0.15) !important;
+}
+
+.verse-number-inline {
+    font-size: 0.65rem;
+    font-weight: bold;
+    color: var(--verse-num);
+    margin-right: 3px;
+    vertical-align: super;
+    cursor: pointer;
+}
+
+.verse-text-inline {
+    margin-right: 4px;
+}
+
+.verse-actions-inline {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 2px;
+}
+
+.verse-inline:hover .verse-actions-inline {
+    opacity: 1;
+}
+
+.verse-action-btn-inline {
+    background: none;
+    border: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    padding: 1px 2px;
+    opacity: 0.6;
+    transition: all 0.2s;
+    vertical-align: middle;
+}
+
+.verse-action-btn-inline:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.verse-has-note-inline {
+    border-bottom: 2px dotted var(--note-color);
+}
+
+.verse-has-crossref-inline {
+    border-bottom: 2px dotted var(--crossref-color);
+}
+
+/* Highlight no parágrafo */
+.verse-highlight {
+    background: var(--search-hl) !important;
+    border-radius: 3px;
+}
+
+.current-result {
+    background: rgba(201,168,76,0.35) !important;
+    animation: pulse 1.5s infinite;
+    border-radius: 3px;
+}
+
+.verses-paragraph.compact .verse-text-inline {
+    display: inline;
+}
+
+.verses-paragraph.compact .verse-inline {
+    display: inline;
+}
+
+/* ============ INDICADORES DE CAPÍTULO ============ */
+.chapter-start-indicator {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border2);
+}
+
+.chapter-start-label {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--surface);
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+}
+
+/* Letra capitular (primeira letra grande) */
+.first-verse {
+    display: inline;
+}
+
+.drop-cap {
+    float: left;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 2px;
+    color: var(--gold);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Indicador de fim de capítulo */
+.chapter-end-indicator {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chapter-end-symbol {
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.chapter-end-label {
+    color: var(--text3);
+    font-size: 0.75rem;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* Botões de navegação de capítulo */
+.nav-chapter-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg4);
+    color: var(--text2);
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-chapter-btn:hover {
+    background: var(--gold-dark);
+    color: var(--gold-light);
+    border-color: var(--border2);
+}
+
+.nav-chapter-btn:active {
+    transform: scale(0.9);
+}
+
+.nav-chapter-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.nav-chapter-btn:disabled:hover {
+    background: var(--bg4);
+    color: var(--text2);
+    border-color: var(--border);
+}
+
+/* ============ INDICADORES DE PARÁGRAFO ============ */
+.verse-inline.paragraph-start {
+    display: block;
+    margin-top: 12px;
+    text-indent: 0;
+}
+
+.verse-inline.paragraph-start::before {
+    content: '';
+    display: block;
+    height: 8px;
+}
+
+.paragraph-marker {
+    color: var(--gold);
+    font-size: 0.6rem;
+    margin-right: 6px;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+
+/* Alternar visibilidade dos marcadores */
+.show-paragraph-markers .paragraph-marker {
+    opacity: 1;
+}
+
+.hide-paragraph-markers .paragraph-marker {
+    opacity: 0;
+}

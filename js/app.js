@@ -217,6 +217,18 @@ function setupEventListeners() {
     // Dicionário
     const dictSearch = $('dictionary-search');
     if (dictSearch) dictSearch.addEventListener('input', searchDictionary);
+
+    // Navegação de capítulos
+const prevChapterBtn = document.getElementById('prev-chapter-btn');
+const nextChapterBtn = document.getElementById('next-chapter-btn');
+
+if (prevChapterBtn) {
+    prevChapterBtn.addEventListener('click', () => navigateChapter(-1));
+}
+
+if (nextChapterBtn) {
+    nextChapterBtn.addEventListener('click', () => navigateChapter(1));
+}
 }
 
 // ============ COMPARAÇÃO ============

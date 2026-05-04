@@ -80,39 +80,27 @@
                 <div id="chapter-content" class="chapter-content"
                     style="display:none;">
                     <div class="chapter-header">
-                        <button id="back-button" class="back-button">←
-                            Voltar</button>
-                        <h2 id="chapter-title"></h2>
-                        <div class="audio-controls">
-                            <button id="play-chapter" class="audio-button"
-                                title="Ouvir capítulo">🔊</button>
-                            <button id="pause-chapter" class="audio-button"
-                                title="Pausar" style="display:none;">⏸️</button>
-                            <button id="stop-chapter" class="audio-button"
-                                title="Parar" style="display:none;">⏹️</button>
-                            <select id="audio-speed" class="audio-speed"
-                                title="Velocidade">
-                                <option value="0.5">0.5x</option>
-                                <option value="0.75">0.75x</option>
-                                <option value="1" selected>1x</option>
-                                <option value="1.25">1.25x</option>
-                                <option value="1.5">1.5x</option>
-                                <option value="2">2x</option>
-                            </select>
-                        </div>
-                        <div class="search-results-nav" style="display:none;">
-                            <button id="prev-result"
-                                class="nav-result">↑</button>
-                            <span id="result-counter">0 de 0</span>
-                            <button id="next-result"
-                                class="nav-result">↓</button>
-                            <button id="show-occurrences"
-                                class="occurrences-button">📊</button>
-                            <button id="clear-search"
-                                class="clear-search-button">✕ Limpar</button>
-                            <span class="search-info" id="search-info"></span>
-                        </div>
-                    </div>
+    <button id="back-button" class="back-button">← Voltar</button>
+    <button id="prev-chapter-btn" class="nav-chapter-btn" title="Capítulo anterior">◀</button>
+    <h2 id="chapter-title"></h2>
+    <button id="next-chapter-btn" class="nav-chapter-btn" title="Próximo capítulo">▶</button>
+    <div class="audio-controls">
+        <button id="play-chapter" class="audio-button" title="Ouvir capítulo">🔊</button>
+        <button id="pause-chapter" class="audio-button" title="Pausar" style="display:none;">⏸️</button>
+        <button id="stop-chapter" class="audio-button" title="Parar" style="display:none;">⏹️</button>
+        <select id="audio-speed" class="audio-speed" title="Velocidade">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+        </select>
+    </div>
+    <div class="search-results-nav" style="display:none;">
+        <!-- ... resto ... -->
+    </div>
+</div>
                     <div id="verses-container"></div>
                 </div>
 
