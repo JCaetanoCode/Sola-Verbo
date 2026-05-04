@@ -514,17 +514,6 @@ mark { background-color: var(--search-hl); color: var(--gold-light); padding: 1p
     border-color: var(--border2);
 }
 
-.verses-paragraph {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 18px;
-    line-height: 2.2;
-    text-align: justify;
-    font-size: 0.95rem;
-    color: var(--text);
-}
-
 .verse-inline {
     position: relative;
     transition: background 0.3s;
@@ -583,13 +572,15 @@ mark { background-color: var(--search-hl); color: var(--gold-light); padding: 1p
     transform: scale(1.2);
 }
 
-.verse-has-note-inline {
+/* REMOVER - Linhas pontilhadas */
+/*.verse-has-note-inline {
     border-bottom: 2px dotted var(--note-color);
 }
 
 .verse-has-crossref-inline {
     border-bottom: 2px dotted var(--crossref-color);
-}
+}*/
+
 
 /* Highlight no parágrafo */
 .verse-highlight {
@@ -798,4 +789,38 @@ mark { background-color: var(--search-hl); color: var(--gold-light); padding: 1p
     font-size: 95%;
     color: var(--text);
     transition: font-size 0.3s ease;
+}
+
+/* ============ FUNDO ALTERNADO PARA PARÁGRAFOS ============ */
+.paragraph-block {
+    display: block;
+    padding: 8px 12px;
+    margin: 2px 0;
+    border-radius: var(--radius-sm);
+    transition: background 0.3s;
+}
+
+.paragraph-block.odd {
+    background: rgba(201, 168, 76, 0.03);
+}
+
+.paragraph-block.even {
+    background: rgba(201, 168, 76, 0.06);
+}
+
+.paragraph-block:hover {
+    background: rgba(201, 168, 76, 0.12) !important;
+}
+
+/* Ajuste para manter o texto fluido dentro do bloco */
+.paragraph-block .verse-inline {
+    display: inline;
+}
+
+.paragraph-block .paragraph-marker {
+    color: var(--gold);
+    font-size: 0.6rem;
+    margin-right: 6px;
+    vertical-align: middle;
+    opacity: 0.5;
 }

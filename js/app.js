@@ -1,3 +1,20 @@
+// ============ VARIÁVEIS GLOBAIS ============
+let currentZoom = parseInt(localStorage.getItem('bibleZoom') || '100');
+
+// ============ FUNÇÃO DE ZOOM (GLOBAL) ============
+function applyZoom(level) {
+    currentZoom = Math.max(60, Math.min(200, level));
+    const paragraph = document.querySelector('.verses-paragraph');
+    if (paragraph) {
+        paragraph.style.fontSize = `${currentZoom}%`;
+    }
+    const zoomLevel = document.getElementById('zoom-level');
+    if (zoomLevel) {
+        zoomLevel.textContent = `${currentZoom}%`;
+    }
+    localStorage.setItem('bibleZoom', currentZoom.toString());
+}
+
 // ============ INICIALIZAÇÃO ============
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -8,6 +25,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderBookList();
         loadSearchHistory();
         updateBookFilter();
+        
+        // Aplicar zoom inicial
+        applyZoom(currentZoom);
     } catch (e) {
         console.error('Erro na inicialização:', e);
         const bl = document.getElementById('book-list');
@@ -219,8 +239,8 @@ function setupEventListeners() {
     if (dictSearch) dictSearch.addEventListener('input', searchDictionary);
 
     // Navegação de capítulos
-    const prevChapterBtn = document.getElementById('prev-chapter-btn');
-    const nextChapterBtn = document.getElementById('next-chapter-btn');
+    const prevChapterBtn = $('prev-chapter-btn');
+    const nextChapterBtn = $('next-chapter-btn');
 
     if (prevChapterBtn) {
         prevChapterBtn.addEventListener('click', () => navigateChapter(-1));
@@ -231,45 +251,15 @@ function setupEventListeners() {
     }
 
     // ============ CONTROLES DE ZOOM ============
-let currentZoom = parseInt(localStorage.getItem('bibleZoom') || '100');
+    const zoomOutBtn = $('zoom-out-btn');
+    const zoomInBtn = $('zoom-in-btn');
+    const zoomResetBtn = $('zoom-reset-btn');
+    const zoomLevel = $('zoom-level');
 
-const zoomOutBtn = document.getElementById('zoom-out-btn');
-const zoomInBtn = document.getElementById('zoom-in-btn');
-const zoomResetBtn = document.getElementById('zoom-reset-btn');
-const zoomLevel = document.getElementById('zoom-level');
-
-function applyZoom(level) {
-    currentZoom = Math.max(60, Math.min(200, level)); // Limitar entre 60% e 200%
-    const paragraph = document.querySelector('.verses-paragraph');
-    if (paragraph) {
-        paragraph.style.fontSize = `${currentZoom}%`;
-    }
-    if (zoomLevel) {
-        zoomLevel.textContent = `${currentZoom}%`;
-    }
-    localStorage.setItem('bibleZoom', currentZoom.toString());
-}
-
-if (zoomOutBtn) {
-    zoomOutBtn.addEventListener('click', () => applyZoom(currentZoom - 10));
-}
-
-if (zoomInBtn) {
-    zoomInBtn.addEventListener('click', () => applyZoom(currentZoom + 10));
-}
-
-if (zoomResetBtn) {
-    zoomResetBtn.addEventListener('click', () => applyZoom(100));
-}
-
-if (zoomLevel) {
-    zoomLevel.addEventListener('click', () => applyZoom(100));
-}
-
-// Aplicar zoom salvo ao carregar
-document.addEventListener('DOMContentLoaded', () => {
-    applyZoom(currentZoom);
-});
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => applyZoom(currentZoom - 10));
+    if (zoomInBtn) zoomInBtn.addEventListener('click', () => applyZoom(currentZoom + 10));
+    if (zoomResetBtn) zoomResetBtn.addEventListener('click', () => applyZoom(100));
+    if (zoomLevel) zoomLevel.addEventListener('click', () => applyZoom(100));
 }
 
 // ============ COMPARAÇÃO ============
@@ -369,17 +359,11 @@ if ('serviceWorker' in navigator) {
             .then(registration => {
                 console.log('✅ Service Worker registrado:', registration.scope);
 
-                // Verificar atualizações
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // Nova versão disponível
                             console.log('🔄 Nova versão disponível!');
-                            if (confirm('Nova versão disponível! Atualizar agora?')) {
-                                newWorker.postMessage('skipWaiting');
-                                window.location.reload();
-                            }
                         }
                     });
                 });
