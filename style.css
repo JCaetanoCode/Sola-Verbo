@@ -1901,3 +1901,304 @@ mark {
     transform: translateY(0);
 }
 
+/* ============ CRONOLOGIA ============ */
+.cronologia-view {
+    padding: 15px;
+}
+
+.cronologia-container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.cronologia-header {
+    text-align: center;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.cronologia-header h2 {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.cronologia-header p {
+    color: var(--text3);
+    font-size: 0.85rem;
+}
+
+.cronologia-section {
+    margin-bottom: 25px;
+}
+
+.cronologia-section-title {
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border2);
+    letter-spacing: 0.5px;
+}
+
+.cronologia-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px;
+    margin-bottom: 12px;
+    transition: all 0.3s;
+}
+
+.cronologia-card:hover {
+    border-color: var(--border2);
+}
+
+.cronologia-card-title {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cronologia-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cronologia-item {
+    color: var(--text2);
+    font-size: 0.82rem;
+    padding: 4px 0 4px 15px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.cronologia-item::before {
+    content: '•';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+}
+
+.cronologia-figuras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cronologia-tag {
+    background: var(--bg4);
+    color: var(--gold-light);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+}
+
+.cronologia-timeline-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cronologia-rei {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: var(--bg4);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+}
+
+.rei-nome {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.rei-periodo {
+    color: var(--text3);
+    font-size: 0.75rem;
+}
+
+.cronologia-dois-reinos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.cronologia-reino {
+    background: var(--bg4);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+}
+
+.reino-titulo {
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cronologia-evento-destaque {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: rgba(201, 168, 76, 0.1);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    margin-top: 4px;
+    border-left: 3px solid var(--gold);
+}
+
+.evento-data {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.evento-data-peq {
+    color: var(--gold);
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+.cronologia-fonte {
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.7rem;
+    margin-top: 20px;
+    padding: 10px;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .cronologia-dois-reinos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sub-abas da cronologia */
+.cronologia-tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.cronologia-tab {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg4);
+    color: var(--text2);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.cronologia-tab.active {
+    background: var(--gold-dark);
+    color: var(--gold-light);
+    border-color: var(--border2);
+}
+
+.cronologia-tab:hover {
+    border-color: var(--border2);
+    color: var(--gold-light);
+}
+
+/* Estilos para os eventos da cronologia dos evangelhos */
+.cronologia-intersticio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: var(--highlight);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    margin: 15px 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.intersticio-icon {
+    font-size: 1.2rem;
+}
+
+.intersticio-texto {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.cronologia-evento-item {
+    display: grid;
+    grid-template-columns: 30px 80px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--bg4);
+    border-radius: var(--radius-sm);
+    margin-bottom: 4px;
+    font-size: 0.82rem;
+    transition: all 0.2s;
+}
+
+.cronologia-evento-item:hover {
+    background: var(--highlight);
+    transform: translateX(3px);
+}
+
+.evento-numero {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.75rem;
+    text-align: center;
+    background: var(--bg3);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evento-referencia {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.78rem;
+    white-space: nowrap;
+}
+
+.evento-descricao {
+    color: var(--text);
+    font-size: 0.82rem;
+}
+
+.evento-paralelos {
+    color: var(--text3);
+    font-size: 0.7rem;
+    background: var(--bg3);
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .cronologia-evento-item {
+        grid-template-columns: 25px 65px 1fr;
+    }
+    .evento-paralelos {
+        grid-column: 2 / -1;
+        margin-top: 4px;
+    }
+}

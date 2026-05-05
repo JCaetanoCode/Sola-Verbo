@@ -1,0 +1,96 @@
+{
+  "cronologia_biblica": {
+    "antigo_testamento": {
+      "pre_historia": {
+        "eventos": [
+          "A Criação",
+          "Adão e Eva no jardim do Éden",
+          "Caim e Abel",
+          "Noé e o dilúvio",
+          "A torre de Babel"
+        ]
+      },
+      "patriarcas_2220_ac": {
+        "figuras_chave": [
+          "Abraão",
+          "Isaque",
+          "Jacó",
+          "José"
+        ]
+      },
+      "israel_no_egito_e_exodo_1900_ac": {
+        "eventos": [
+          "Migração dos filhos de Jacó para o Egito",
+          "Escravidão dos israelitas",
+          "Nascimento de Moisés",
+          "Saída do Egito e peregrinação no deserto"
+        ]
+      },
+      "conquista_e_juizes_1400_ac": {
+        "eventos": [
+          "Início da conquista de Canaã (Josué)",
+          "Início do período dos juízes"
+        ]
+      },
+      "reino_unido": {
+        "saul": "1.050 a 1.010 a.C.",
+        "david": "1.010 a 970 a.C.",
+        "salomao": "970 a 931 a.C."
+      },
+      "reino_dividido": {
+        "juda_reino_do_sul": [
+          {"rei": "Roboão", "periodo": "931 a 913 a.C."},
+          {"rei": "Abias", "periodo": "913 a 911 a.C."},
+          {"rei": "Asa", "periodo": "911 a 870 a.C."},
+          {"rei": "Josafá", "periodo": "870 a 848 a.C."},
+          {"rei": "Ezequias", "periodo": "716 a 687 a.C."},
+          {"rei": "Josias", "periodo": "640 a 609 a.C."},
+          {"evento": "Queda de Jerusalém", "data": "587 a.C."}
+        ],
+        "israel_reino_do_norte": [
+          {"rei": "Jeroboão I", "periodo": "931 a 910 a.C."},
+          {"rei": "Acabe", "periodo": "874 a 853 a.C."},
+          {"rei": "Jeú", "periodo": "841 a 814 a.C."},
+          {"evento": "Queda de Samaria", "data": "722 a.C."}
+        ]
+      },
+      "cativeiro_e_restauracao": {
+        "eventos": [
+          {"evento": "Início do domínio persa", "data": "539 a.C."},
+          {"evento": "Ciro ordena a volta dos judeus", "data": "538 a.C."},
+          {"evento": "Reconstrução do Templo", "data": "520 a.C."},
+          {"evento": "Reconstrução das muralhas de Jerusalém", "data": "445 a 443 a.C."}
+        ]
+      }
+    },
+    "periodo_intertestamentario": {
+      "400_ac_a_1_ac": [
+        {"dominio": "Macedônio (Alexandre o Grande)", "periodo": "333 a 323 a.C."},
+        {"dominio": "Ptolomeus", "periodo": "323 a 198 a.C."},
+        {"dominio": "Selêucidas", "periodo": "198 a 166 a.C."},
+        {"dominio": "Asmoneus (Revolução Macabeus)", "periodo": "166 a 63 a.C."},
+        {"dominio": "Romano (Pompeu)", "periodo": "63 a.C."},
+        {"rei": "Herodes o Grande", "periodo": "37 a 4 a.C."}
+      ]
+    },
+    "novo_testamento": {
+      "vida_de_jesus": {
+        "nascimento": "6 a.C.",
+        "batismo": "26 d.C.",
+        "primeira_pascoa": "28 d.C.",
+        "morte_e_ressurreicao": "30 d.C."
+      },
+      "periodo_dos_apostolos": {
+        "eventos_chave": [
+          {"evento": "Dia de Pentecostes", "data": "30 d.C."},
+          {"evento": "Conversão de Paulo", "data": "37 d.C."},
+          {"evento": "Primeira viagem missionária de Paulo", "data": "48 a 49 d.C."},
+          {"evento": "Conferência de Jerusalém", "data": "50 d.C."},
+          {"evento": "Destruição de Jerusalém", "data": "70 d.C."},
+          {"evento": "Morte de João", "data": "98 ou 100 d.C.?"}
+        ]
+      }
+    }
+  },
+  "fonte": "Bíblia de Estudos Almeida, Sociedade Bíblica do Brasil, 1999."
+}

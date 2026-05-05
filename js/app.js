@@ -41,7 +41,8 @@ function switchTab(tab) {
     const tabBtn = document.querySelector(`[data-tab="${tab}"]`);
     if (tabBtn) tabBtn.classList.add('active');
 
-    ['book-list', 'chapter-content', 'compare-view-full', 'search-view'].forEach(id => {
+    // Esconder todas as views
+    ['book-list', 'chapter-content', 'compare-view-full', 'search-view', 'cronologia-view'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -66,6 +67,10 @@ function switchTab(tab) {
             const blNew = document.getElementById('book-list');
             if (blNew) blNew.style.display = 'block';
             renderBookList();
+            break;
+        case 'cronologia':
+            document.getElementById('cronologia-view').style.display = 'block';
+            if (typeof loadCronologia === 'function') loadCronologia();
             break;
         case 'search':
             const sv = document.getElementById('search-view');

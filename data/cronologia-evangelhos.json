@@ -1,0 +1,65 @@
+{
+  "titulo": "Índices Cronológicos dos Evangelhos",
+  "autor": "Jairo Caetano",
+  "descricao": "Uma tentativa de organizar cronologicamente os acontecimentos narrados nos Evangelhos.",
+  "cronologia": {
+    "nascimento_e_infancia": [
+      { "referencia": "Jo 1:1", "evento": "A Palavra Tornou-se Carne" },
+      { "referencia": "Lc 1:1", "evento": "Introdução" },
+      { "referencia": "Lc 1:5", "evento": "O Nascimento de João Batista é Predito" },
+      { "referencia": "Lc 1:26", "evento": "O Nascimento de Jesus é Predito" },
+      { "referencia": "Lc 1:39", "evento": "Maria Visita Isabel" },
+      { "referencia": "Lc 1:46", "evento": "O Cântico de Maria" },
+      { "referencia": "Lc 1:57", "evento": "O Nascimento de João Batista" },
+      { "referencia": "Lc 1:67", "evento": "O Cântico de Zacarias" },
+      { "referencia": "Mt 1:1", "evento": "A Genealogia de Jesus", "paralelos": ["Lc 3:23-38"] },
+      { "referencia": "Mt 1:18", "evento": "O Nascimento de Jesus Cristo", "paralelos": ["Lc 2:1-7"] },
+      { "referencia": "Lc 2:8", "evento": "Os Pastores e os Anjos" },
+      { "referencia": "Lc 2:21", "evento": "Jesus é Apresentado no Templo" },
+      { "referencia": "Lc 2:29-32", "evento": "O cântico de Simeão" },
+      { "referencia": "Mt 2:1", "evento": "A Visita dos Magos" },
+      { "referencia": "Mt 2:13", "evento": "A Fuga para o Egito" },
+      { "referencia": "Mt 2:19", "evento": "A Volta para Israel" },
+      { "referencia": "Lc 2:41", "evento": "O Menino Jesus no Templo" }
+    ],
+    "intersticio": "Lapso temporal de 18 anos",
+    "preparacao_e_inicio_do_ministerio": [
+      { "referencia": "Lc 3:1", "evento": "João Batista Prepara o Caminho", "paralelos": ["Mt 3:1-12", "Mc 1:2-8"] },
+      { "referencia": "Jo 1:19", "evento": "João Batista Nega Ser Ele o Cristo" },
+      { "referencia": "Mt 3:13", "evento": "O Batismo de Jesus", "paralelos": ["Mc 1:9-11", "Lc 3:21-22"] },
+      { "referencia": "Jo 1:29", "evento": "Jesus, o Cordeiro de Deus" },
+      { "referencia": "Mt 4:1", "evento": "A Tentação de Jesus", "paralelos": ["Mc 1:12-13", "Lc 4:1-13"] },
+      { "referencia": "Jo 1:35", "evento": "Os Primeiros Discípulos (Primeiro Chamado)", "paralelos": ["Mt 4:18-22", "Mc 1:16-20", "Lc 5:1-11"] },
+      { "referencia": "Jo 1:43", "evento": "Jesus Chama Filipe e Natanael" },
+      { "referencia": "Jo 2:1", "evento": "Jesus Transforma Água em Vinho (Primeiro Milagre)" },
+      { "referencia": "Jo 2:12", "evento": "Jesus Purifica o Templo (Primeira Vez)" },
+      { "referencia": "Jo 3:1", "evento": "O Encontro com Nicodemos" }
+    ],
+    "ministerio_na_galileia_e_ensinos": [
+      { "referencia": "Jo 4:1", "evento": "Jesus Conversa com uma Samaritana" },
+      { "referencia": "Mt 4:12", "evento": "Jesus Começa a Pregar", "paralelos": ["Mc 1:14-15", "Lc 4:14-15"] },
+      { "referencia": "Mc 1:14", "evento": "Chamado dos Primeiros Discípulos (Segundo Chamado)", "paralelos": ["Mt 4:12-22", "Lc 4:14-15", "Lc 5:1-11", "Jo 1:35-42"] },
+      { "referencia": "Mc 3:13", "evento": "A Escolha dos Doze Apóstolos", "paralelos": ["Lc 6:12-16"] },
+      { "referencia": "Mt 5:1", "evento": "O Sermão do Monte / Bem-aventuranças", "paralelos": ["Lc 6:20-23"] },
+      { "referencia": "Mt 14:13", "evento": "A Primeira Multiplicação dos Pães", "paralelos": ["Mc 6:30-44", "Lc 9:10-17", "Jo 6:1-15"] },
+      { "referencia": "Mt 17:1", "evento": "A Transfiguração", "paralelos": ["Mc 9:2-13", "Lc 9:28-36"] },
+      { "referencia": "Lc 10:25", "evento": "A Parábola do Bom Samaritano" },
+      { "referencia": "Jo 11:38", "evento": "Jesus Ressuscita Lázaro" }
+    ],
+    "ultima_semana_e_paixao": [
+      { "referencia": "Mt 21:1", "evento": "A Entrada Triunfal", "paralelos": ["Mc 11:1-11", "Lc 19:28-40", "Jo 12:12-19"] },
+      { "referencia": "Mt 26:17", "evento": "A Ceia do Senhor", "paralelos": ["Mc 14:12-26", "Lc 22:7-23", "Jo 13:18-30"] },
+      { "referencia": "Jo 13:1", "evento": "Jesus Lava os Pés dos Discípulos" },
+      { "referencia": "Mt 26:36", "evento": "Jesus no Getsêmani", "paralelos": ["Mc 14:32-42", "Lc 22:39-46"] },
+      { "referencia": "Mt 27:32", "evento": "A Crucificação", "paralelos": ["Mc 15:21-32", "Lc 23:26-43", "Jo 19:16-27"] },
+      { "referencia": "Mt 27:45", "evento": "A Morte de Jesus", "paralelos": ["Mc 15:33-41", "Lc 23:44-49", "Jo 19:28-30"] }
+    ],
+    "ressurreicao_e_ascensao": [
+      { "referencia": "Mt 28:1", "evento": "A Ressurreição", "paralelos": ["Mc 16:1-8", "Lc 24:1-12", "Jo 20:1-9"] },
+      { "referencia": "Lc 24:13", "evento": "No Caminho de Emaús" },
+      { "referencia": "Jo 21:15", "evento": "Jesus Restaura Pedro" },
+      { "referencia": "Mt 28:16", "evento": "A Grande Comissão" },
+      { "referencia": "Lc 24:50", "evento": "A Ascensão" }
+    ]
+  }
+}
