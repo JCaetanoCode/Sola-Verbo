@@ -186,71 +186,157 @@
                 </div>
 
                 <!-- Aba de Comparação -->
-<div id="compare-view-full" class="compare-view-full" style="display:none;">
-    <div class="compare-controls">
-        <div class="compare-control-item">
-            <label>Versão 1:</label>
-            <select id="compare-version-1" class="filter-select">
-                <option value="ACF">ACF</option>
-                <option value="ARA">ARA</option>
-                <option value="ARC">ARC</option>
-                <option value="AS21">AS21</option>
-                <option value="JFAA">JFAA</option>
-                <option value="KJA">KJA</option>
-                <option value="KJF">KJF</option>
-                <option value="NAA">NAA</option>
-                <option value="NBV">NBV</option>
-                <option value="NTLH">NTLH</option>
-                <option value="NVI">NVI</option>
-                <option value="NVT">NVT</option>
-                <option value="TB">TB</option>
-            </select>
-        </div>
-        <div class="compare-control-item">
-            <label>Livro:</label>
-            <select id="compare-book" class="filter-select">
-                <option value="">Selecione um livro</option>
-            </select>
-        </div>
-        <div class="compare-control-item">
-            <label>Capítulo:</label>
-            <select id="compare-chapter" class="filter-select" disabled>
-                <option value="">Selecione</option>
-            </select>
-        </div>
-        <div class="compare-control-item">
-            <label>Versão 2:</label>
-            <select id="compare-version-2" class="filter-select">
-                <option value="ACF">ACF</option>
-                <option value="ARA" selected>ARA</option>
-                <option value="ARC">ARC</option>
-                <option value="AS21">AS21</option>
-                <option value="JFAA">JFAA</option>
-                <option value="KJA">KJA</option>
-                <option value="KJF">KJF</option>
-                <option value="NAA">NAA</option>
-                <option value="NBV">NBV</option>
-                <option value="NTLH">NTLH</option>
-                <option value="NVI">NVI</option>
-                <option value="NVT">NVT</option>
-                <option value="TB">TB</option>
-            </select>
-        </div>
-        <button id="compare-btn-go" class="compare-go-btn">🔄 Comparar</button>
-    </div>
-    <div class="compare-panes">
-        <div class="compare-pane-full" id="compare-pane-1">
-            <div class="compare-pane-header">Selecione um livro e capítulo</div>
-        </div>
-        <div class="compare-pane-full" id="compare-pane-2">
-            <div class="compare-pane-header">Selecione um livro e capítulo</div>
-        </div>
-    </div>
-</div>
+                <div id="compare-view-full" class="compare-view-full"
+                    style="display:none;">
+                    <div class="compare-controls">
+                        <div class="compare-control-item">
+                            <label>Versão 1:</label>
+                            <select id="compare-version-1"
+                                class="filter-select">
+                                <option value="ACF">ACF</option>
+                                <option value="ARA">ARA</option>
+                                <option value="ARC">ARC</option>
+                                <option value="AS21">AS21</option>
+                                <option value="JFAA">JFAA</option>
+                                <option value="KJA">KJA</option>
+                                <option value="KJF">KJF</option>
+                                <option value="NAA">NAA</option>
+                                <option value="NBV">NBV</option>
+                                <option value="NTLH">NTLH</option>
+                                <option value="NVI">NVI</option>
+                                <option value="NVT">NVT</option>
+                                <option value="TB">TB</option>
+                            </select>
+                        </div>
+                        <div class="compare-control-item">
+                            <label>Livro:</label>
+                            <select id="compare-book" class="filter-select">
+                                <option value>Selecione um livro</option>
+                            </select>
+                        </div>
+                        <div class="compare-control-item">
+                            <label>Capítulo:</label>
+                            <select id="compare-chapter" class="filter-select"
+                                disabled>
+                                <option value>Selecione</option>
+                            </select>
+                        </div>
+                        <div class="compare-control-item">
+                            <label>Versão 2:</label>
+                            <select id="compare-version-2"
+                                class="filter-select">
+                                <option value="ACF">ACF</option>
+                                <option value="ARA" selected>ARA</option>
+                                <option value="ARC">ARC</option>
+                                <option value="AS21">AS21</option>
+                                <option value="JFAA">JFAA</option>
+                                <option value="KJA">KJA</option>
+                                <option value="KJF">KJF</option>
+                                <option value="NAA">NAA</option>
+                                <option value="NBV">NBV</option>
+                                <option value="NTLH">NTLH</option>
+                                <option value="NVI">NVI</option>
+                                <option value="NVT">NVT</option>
+                                <option value="TB">TB</option>
+                            </select>
+                        </div>
+                        <button id="compare-btn-go" class="compare-go-btn">🔄
+                            Comparar</button>
+                    </div>
+                    <div class="compare-panes">
+                        <div class="compare-pane-full" id="compare-pane-1">
+                            <div class="compare-pane-header">Selecione um livro
+                                e capítulo</div>
+                        </div>
+                        <div class="compare-pane-full" id="compare-pane-2">
+                            <div class="compare-pane-header">Selecione um livro
+                                e capítulo</div>
+                        </div>
+                    </div>
+                </div>
             </main>
 
-            <!-- Modais e Rodapé (mantém igual) -->
-            <!-- ... -->
+                    </main>
+
+        <!-- Modal de Nota -->
+        <div id="note-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📝 Nota - <span id="note-verse-ref"></span></h3>
+                    <button class="close-button" onclick="document.getElementById('note-modal').style.display='none'">×</button>
+                </div>
+                <div style="padding:15px;">
+                    <textarea id="note-textarea" class="note-textarea" placeholder="Escreva sua nota aqui..."></textarea>
+                    <button id="save-note-btn" class="save-note-btn">💾 Salvar Nota</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Referências Cruzadas -->
+        <div id="crossref-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🔗 Referências Cruzadas</h3>
+                    <button class="close-button" onclick="document.getElementById('crossref-modal').style.display='none'">×</button>
+                </div>
+                <div id="crossref-list" class="favorites-list"></div>
+            </div>
+        </div>
+
+        <!-- Modal de Favoritos -->
+        <div id="favorites-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>⭐ Versículos Favoritos</h3>
+                    <button id="close-favorites" class="close-button">×</button>
+                </div>
+                <div id="favorites-list" class="favorites-list"></div>
+            </div>
+        </div>
+
+        <!-- Modal de Ocorrências -->
+        <div id="occurrences-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📊 Ocorrências por Livro</h3>
+                    <button id="close-occurrences" class="close-button">×</button>
+                </div>
+                <div id="occurrences-list" class="occurrences-list"></div>
+                <div id="occurrences-total" class="occurrence-total"></div>
+            </div>
+        </div>
+
+        <!-- Modal do Dicionário -->
+        <div id="dictionary-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📚 Dicionário Bíblico</h3>
+                    <button id="close-dictionary" class="close-button">×</button>
+                </div>
+                <div style="padding:15px;">
+                    <input type="text" id="dictionary-search" class="search-input" placeholder="Buscar termo..." style="width:100%;margin-bottom:10px;">
+                    <div id="dictionary-results" class="favorites-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Conteúdo (Sobre, Contato, Notícias, Doar) -->
+        <div id="content-modal" class="modal" style="display:none;">
+            <div class="modal-content" style="max-width:650px;">
+                <div class="modal-header">
+                    <h3 id="content-title"></h3>
+                    <button class="close-button" onclick="closeContentPage()">×</button>
+                </div>
+                <div id="content-body" class="content-page-wrapper"></div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="app-footer">
+            <!-- ... rodapé ... -->
+        </footer>
+    </div>
+
         </div>
 
         <!-- Scripts -->
