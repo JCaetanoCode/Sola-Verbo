@@ -315,4 +315,93 @@ function navigateChapter(direction) {
     }
 }
 
-// ... (resto das funções permanece igual: highlightSearchResultsParagraph, clearSearchHighlights, toggleMarkerPaletteParagraph, setMarkerParagraph, etc.)
+// ============ MARCA-TEXTO NO PARÁGRAFO ============
+let selectedVerseForMarker = null;
+
+function toggleMarkerPaletteParagraph() {
+    const palette = document.getElementById('marker-palette-paragraph');
+    if (palette) {
+        palette.style.display = palette.style.display === 'flex' ? 'none' : 'flex';
+    }
+}
+
+// Evento de seleção de versículo
+document.addEventListener('click', function(e) {
+    const verseInline = e.target.closest('.verse-inline');
+    if (verseInline) {
+        document.querySelectorAll('.verse-inline.selected-for-marker').forEach(el =>
+            el.classList.remove('selected-for-marker')
+        );
+        verseInline.classList.add('selected-for-marker');
+        selectedVerseForMarker = verseInline;
+    }
+});
+
+function setMarkerParagraph(color) {
+    if (!selectedVerseForMarker) {
+        alert('Clique em um versículo primeiro para marcá-lo.');
+        return;
+    }
+
+    const verseId = selectedVerseForMarker.id;
+    const match = verseId.match(/verse-(\d+)/);
+    if (!match) return;
+
+    const verseIndex = parseInt(match[1]);
+    const key = getVerseKey(appState.currentBook.name, appState.currentChapter + 1, verseIndex + 1);
+
+    if (color === 'none') {
+        delete appState.markers[key];
+        selectedVerseForMarker.style.background = '';
+    } else {
+        appState.markers[key] = color;
+        selectedVerseForMarker.style.background = `var(--marker-${color})`;
+    }
+
+    localStorage.setItem('bibleMarkers', JSON.stringify(appState.markers));
+    document.getElementById('marker-palette-paragraph').style.display = 'none';
+}
+
+function toggleParagraphMarkers() {
+    const paragraph = document.querySelector('.verses-paragraph');
+    if (!paragraph) return;
+
+    if (paragraph.classList.contains('show-paragraph-markers')) {
+        paragraph.classList.remove('show-paragraph-markers');
+        paragraph.classList.add('hide-paragraph-markers');
+    } else {
+        paragraph.classList.remove('hide-paragraph-markers');
+        paragraph.classList.add('show-paragraph-markers');
+    }
+}
+
+// ============ HIGHLIGHT DE BUSCA ============
+function highlightSearchResultsParagraph() {
+    if (!appState.currentSearchTerm || !appState.searchResults.length) return;
+    clearSearchHighlights();
+
+    document.querySelectorAll('.verse-text-inline').forEach(el => {
+        const originalText = el.textContent;
+        if (originalText.toLowerCase().includes(appState.currentSearchTerm.toLowerCase())) {
+            el.innerHTML = originalText.replace(new RegExp(`(${escapeRegExp(appState.currentSearchTerm)})`, 'gi'), '<mark>$1</mark>');
+            el.parentElement.classList.add('verse-highlight');
+        }
+    });
+
+    if (appState.currentSearchIndex >= 0) {
+        const cr = appState.searchResults[appState.currentSearchIndex];
+        const el = document.getElementById(`verse-${cr.verse - 1}`);
+        if (el) { el.classList.remove('verse-highlight'); el.classList.add('current-result'); }
+    }
+
+    const counter = document.getElementById('result-counter');
+    if (counter) counter.textContent = `${appState.currentSearchIndex + 1} de ${appState.searchResults.length}`;
+}
+
+function clearSearchHighlights() {
+    document.querySelectorAll('.verse-inline').forEach(el => {
+        el.classList.remove('verse-highlight', 'current-result');
+        const vt = el.querySelector('.verse-text-inline');
+        if (vt) vt.innerHTML = vt.textContent;
+    });
+}
