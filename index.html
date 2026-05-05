@@ -186,10 +186,67 @@
                 </div>
 
                 <!-- Aba de Comparação -->
-                <div id="compare-view-full" class="compare-view-full"
-                    style="display:none;">
-                    <!-- ... (mantém igual) ... -->
-                </div>
+<div id="compare-view-full" class="compare-view-full" style="display:none;">
+    <div class="compare-controls">
+        <div class="compare-control-item">
+            <label>Versão 1:</label>
+            <select id="compare-version-1" class="filter-select">
+                <option value="ACF">ACF</option>
+                <option value="ARA">ARA</option>
+                <option value="ARC">ARC</option>
+                <option value="AS21">AS21</option>
+                <option value="JFAA">JFAA</option>
+                <option value="KJA">KJA</option>
+                <option value="KJF">KJF</option>
+                <option value="NAA">NAA</option>
+                <option value="NBV">NBV</option>
+                <option value="NTLH">NTLH</option>
+                <option value="NVI">NVI</option>
+                <option value="NVT">NVT</option>
+                <option value="TB">TB</option>
+            </select>
+        </div>
+        <div class="compare-control-item">
+            <label>Livro:</label>
+            <select id="compare-book" class="filter-select">
+                <option value="">Selecione um livro</option>
+            </select>
+        </div>
+        <div class="compare-control-item">
+            <label>Capítulo:</label>
+            <select id="compare-chapter" class="filter-select" disabled>
+                <option value="">Selecione</option>
+            </select>
+        </div>
+        <div class="compare-control-item">
+            <label>Versão 2:</label>
+            <select id="compare-version-2" class="filter-select">
+                <option value="ACF">ACF</option>
+                <option value="ARA" selected>ARA</option>
+                <option value="ARC">ARC</option>
+                <option value="AS21">AS21</option>
+                <option value="JFAA">JFAA</option>
+                <option value="KJA">KJA</option>
+                <option value="KJF">KJF</option>
+                <option value="NAA">NAA</option>
+                <option value="NBV">NBV</option>
+                <option value="NTLH">NTLH</option>
+                <option value="NVI">NVI</option>
+                <option value="NVT">NVT</option>
+                <option value="TB">TB</option>
+            </select>
+        </div>
+        <button id="compare-btn-go" class="compare-go-btn">🔄 Comparar</button>
+    </div>
+    <div class="compare-panes">
+        <div class="compare-pane-full" id="compare-pane-1">
+            <div class="compare-pane-header">Selecione um livro e capítulo</div>
+        </div>
+        <div class="compare-pane-full" id="compare-pane-2">
+            <div class="compare-pane-header">Selecione um livro e capítulo</div>
+        </div>
+    </div>
+</div>
             </main>
 
             <!-- Modais e Rodapé (mantém igual) -->
