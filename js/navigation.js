@@ -220,23 +220,19 @@ function loadChapter(chapterIndex) {
         verseSpan.id = `verse-${vi}`;
         if (mc) verseSpan.style.background = `var(--marker-${mc})`;
 
-        const isFirstVerse = vi === 0;
-        const firstLetter = isFirstVerse ? verse.charAt(0) : '';
-        const restOfVerse = isFirstVerse ? verse.slice(1) : verse;
         const paraMarker = (vi > 0 && isParagraphStart(verse, prevVerse)) ? '<span class="paragraph-marker" title="Início de parágrafo">¶</span>' : '';
 
         verseSpan.innerHTML = `
-            ${paraMarker}
-            <sup class="verse-number-inline" data-verse="${vi + 1}" onclick="event.stopPropagation(); playVerseAudio(${vi})">${vi + 1}</sup>
-            ${isFirstVerse ? `<span class="drop-cap">${firstLetter}</span>` : ''}
-            <span class="verse-text-inline">${isFirstVerse ? restOfVerse : verse || '&nbsp;'}</span>
-            <span class="verse-actions-inline">
-                <button class="verse-action-btn-inline" onclick="event.stopPropagation(); playVerseAudio(${vi})" title="Ouvir">🔊</button>
-                <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openNoteModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1})" title="Nota">📝</button>
-                <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openCrossrefModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1})" title="Referências">🔗</button>
-                <button class="verse-action-btn-inline" onclick="event.stopPropagation(); toggleFavorite('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1},this)" title="Favorito">${isFavorite(bd.name, chapterIndex + 1, vi + 1) ? '⭐' : '☆'}</button>
-            </span>
-        `;
+    ${paraMarker}
+    <sup class="verse-number-inline" data-verse="${vi + 1}" onclick="event.stopPropagation(); playVerseAudio(${vi})">${vi + 1}</sup>
+    <span class="verse-text-inline">${verse || '&nbsp;'}</span>
+    <span class="verse-actions-inline">
+        <button class="verse-action-btn-inline" onclick="event.stopPropagation(); playVerseAudio(${vi})" title="Ouvir">🔊</button>
+        <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openNoteModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1})" title="Nota">📝</button>
+        <button class="verse-action-btn-inline" onclick="event.stopPropagation(); openCrossrefModal('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1})" title="Referências">🔗</button>
+        <button class="verse-action-btn-inline" onclick="event.stopPropagation(); toggleFavorite('${bd.name.replace(/'/g, "\\'")}',${chapterIndex + 1},${vi + 1},this)" title="Favorito">${isFavorite(bd.name, chapterIndex + 1, vi + 1) ? '⭐' : '☆'}</button>
+    </span>
+`;
         currentBlock.appendChild(verseSpan);
     });
 
