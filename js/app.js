@@ -36,13 +36,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ============ TROCAR DE ABA ============
+// ============ TROCAR DE ABA ============
 function switchTab(tab) {
     document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
     const tabBtn = document.querySelector(`[data-tab="${tab}"]`);
     if (tabBtn) tabBtn.classList.add('active');
 
-    // Esconder todas as views
-    ['book-list', 'chapter-content', 'compare-view-full', 'search-view', 'cronologia-view'].forEach(id => {
+    // Esconder TODAS as views
+    ['book-list', 'chapter-content', 'compare-view-full', 'search-view', 'cronologia-view', 'dictionary-view'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -68,8 +69,15 @@ function switchTab(tab) {
             if (blNew) blNew.style.display = 'block';
             renderBookList();
             break;
+        case 'dictionary':
+            const dictView = document.getElementById('dictionary-view');
+            if (dictView) dictView.style.display = 'block';
+            const dictInput = document.getElementById('dictionary-search-main');
+            if (dictInput) setTimeout(() => dictInput.focus(), 100);
+            break;
         case 'cronologia':
-            document.getElementById('cronologia-view').style.display = 'block';
+            const cronView = document.getElementById('cronologia-view');
+            if (cronView) cronView.style.display = 'block';
             if (typeof loadCronologia === 'function') loadCronologia();
             break;
         case 'search':
@@ -83,19 +91,6 @@ function switchTab(tab) {
             if (cv) cv.style.display = 'block';
             if (typeof populateCompareBooks === 'function') populateCompareBooks();
             break;
-
-        case 'dictionary':
-            const dictView = document.getElementById('dictionary-view');
-            if (dictView) dictView.style.display = 'block';
-            if (typeof loadDictionary === 'function') loadDictionary();
-            const dictInput = document.getElementById('dictionary-search-main');
-            if (dictInput) setTimeout(() => dictInput.focus(), 100);
-            break;
-
-            ['book-list', 'chapter-content', 'compare-view-full', 'search-view', 'cronologia-view', 'dictionary-view'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-});
     }
 }
 
