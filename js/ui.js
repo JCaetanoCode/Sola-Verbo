@@ -55,3 +55,42 @@ function searchDictionary() {
     const results = Object.entries(dictionaryData).filter(([key, def]) => key.toLowerCase().includes(term) || (typeof def === 'string' && def.toLowerCase().includes(term))).slice(0, 20);
     resultsDiv.innerHTML = results.length === 0 ? '<div class="no-favorites">📭 Nenhum termo encontrado</div>' : results.map(([key, def]) => `<div class="dictionary-item"><div class="dictionary-term">📖 ${key}</div><div class="dictionary-definition">${def}</div></div>`).join('');
 }
+
+// ============ DICIONÁRIO NA ABA PRINCIPAL ============
+function searchDictionaryMain() {
+    const term = document.getElementById('dictionary-search-main').value.trim().toLowerCase();
+    const resultsDiv = document.getElementById('dictionary-results-main');
+
+    if (!resultsDiv) return;
+    if (!term) {
+        resultsDiv.innerHTML = '<div class="no-favorites">📚 Digite um termo para buscar no dicionário</div>';
+        return;
+    }
+    if (Object.keys(dictionaryData).length === 0) {
+        loadDictionary().then(() => searchDictionaryMain());
+        return;
+    }
+
+    const results = Object.entries(dictionaryData)
+        .filter(([key, def]) =>
+            key.toLowerCase().includes(term) ||
+            (typeof def === 'string' && def.toLowerCase().includes(term))
+        )
+        .slice(0, 30);
+
+    if (results.length === 0) {
+        resultsDiv.innerHTML = '<div class="no-favorites">📭 Nenhum termo encontrado para "' + term + '"</div>';
+    } else {
+        resultsDiv.innerHTML = `
+            <div class="dictionary-results-header">
+                ${results.length} resultado(s) para "<strong>${term}</strong>"
+            </div>
+            ${results.map(([key, def]) => `
+                <div class="dictionary-card">
+                    <div class="dictionary-card-term">📖 ${key}</div>
+                    <div class="dictionary-card-definition">${def}</div>
+                </div>
+            `).join('')}
+        `;
+    }
+}

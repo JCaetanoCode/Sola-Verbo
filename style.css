@@ -2202,3 +2202,76 @@ mark {
         margin-top: 4px;
     }
 }
+
+/* ============ ABA DO DICIONÁRIO ============ */
+.dictionary-view {
+    padding: 0;
+}
+
+.dictionary-page-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+
+.dictionary-hero {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.dictionary-hero h2 {
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.dictionary-hero p {
+    color: var(--text3);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.dictionary-results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dictionary-results-header {
+    color: var(--text2);
+    font-size: 0.85rem;
+    padding: 10px 15px;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.dictionary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all 0.3s;
+}
+
+.dictionary-card:hover {
+    border-color: var(--border2);
+    background: var(--highlight);
+}
+
+.dictionary-card-term {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.dictionary-card-definition {
+    color: var(--text2);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}

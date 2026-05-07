@@ -83,6 +83,19 @@ function switchTab(tab) {
             if (cv) cv.style.display = 'block';
             if (typeof populateCompareBooks === 'function') populateCompareBooks();
             break;
+
+        case 'dictionary':
+            const dictView = document.getElementById('dictionary-view');
+            if (dictView) dictView.style.display = 'block';
+            if (typeof loadDictionary === 'function') loadDictionary();
+            const dictInput = document.getElementById('dictionary-search-main');
+            if (dictInput) setTimeout(() => dictInput.focus(), 100);
+            break;
+
+            ['book-list', 'chapter-content', 'compare-view-full', 'search-view', 'cronologia-view', 'dictionary-view'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+});
     }
 }
 
@@ -99,6 +112,17 @@ function setupEventListeners() {
             switchTab('old');
         });
     }
+
+    // Dicionário na aba principal
+const dictSearchBtn = document.getElementById('dictionary-search-btn');
+const dictSearchInput = document.getElementById('dictionary-search-main');
+
+if (dictSearchBtn && dictSearchInput) {
+    dictSearchBtn.addEventListener('click', () => searchDictionaryMain());
+    dictSearchInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') searchDictionaryMain();
+    });
+}
 
     // Navegação por abas
     document.querySelectorAll('.nav-item').forEach(b => {
