@@ -49,14 +49,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .sheet-info code {
-            background: #fff;
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.3rem;
-            font-size: 0.8rem;
-            word-break: break-all;
-        }
-
         .status-badge {
             display: inline-block;
             padding: 0.2rem 0.8rem;
@@ -73,11 +65,6 @@
 
         .status-warning {
             background: #ff9800;
-            color: white;
-        }
-
-        .status-error {
-            background: #f44336;
             color: white;
         }
 
@@ -212,6 +199,8 @@
         .category-valores { background: #fef3c7; color: #92400e; }
         .category-geografia { background: #d1fae5; color: #065f46; }
         .category-genealogia { background: #fce7f3; color: #9d174d; }
+        .category-cultura { background: #ede9fe; color: #5b21b6; }
+        .category-idioma { background: #fef08a; color: #854d0e; }
         .category-outros { background: #e0e7ff; color: #3730a3; }
 
         .term-reference {
@@ -304,13 +293,21 @@
             font-weight: normal;
             color: #c4a35a;
         }
+
+        input#downloadFileName {
+            width: 100%;
+            padding: 0.4rem;
+            border-radius: 0.4rem;
+            border: 1px solid #ccc;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="admin-header">
             <h1>📖 Biblioteca Bíblica</h1>
-            <p>Sincronizado com Google Sheets | Geografia e Genealogia</p>
+            <p>Sincronizado com Google Sheets | Cultura e Idioma</p>
         </div>
 
         <div class="sheet-info">
@@ -319,7 +316,7 @@
                 <li>Crie uma planilha com as colunas: <strong>name, category, definition, reference, verse</strong></li>
                 <li>Preencha os dados (ex: Amor | amor | Definição... | 1 João 4:8 | Versículo)</li>
                 <li>Vá em <strong>Arquivo → Compartilhar → Publicar na web</strong></li>
-                <li>Clique em <strong>"Publicar"</strong> (não precisa selecionar nada específico)</li>
+                <li>Clique em <strong>"Publicar"</strong></li>
                 <li>Copie o <strong>LINK COMPLETO</strong> da planilha publicada</li>
                 <li>Cole o link abaixo e clique em <strong>📥 Carregar Planilha</strong></li>
             </ol>
@@ -328,7 +325,7 @@
                 <button id="loadSheetBtn" class="btn btn-success" style="margin: 0;">📥 Carregar</button>
             </div>
             <div class="helper-text">
-                💡 Exemplo de link: https://docs.google.com/spreadsheets/d/e/2PACX-.../pubhtml
+                💡 Exemplo: https://docs.google.com/spreadsheets/d/e/2PACX-.../pubhtml
             </div>
             <div style="margin-top: 0.5rem;">
                 <button id="useDemoBtn" class="btn btn-secondary" style="margin: 0; padding: 0.3rem 0.8rem; font-size: 0.8rem;">📖 Usar Dados de Demonstração</button>
@@ -345,7 +342,7 @@
                     
                     <div class="form-group">
                         <label>📖 Termo *</label>
-                        <input type="text" id="termName" required placeholder="Ex: Amor, Fé, Graça, Jerusalém, Abraão">
+                        <input type="text" id="termName" required placeholder="Ex: Amor, Fé, Hebraico, Templo">
                     </div>
 
                     <div class="form-group">
@@ -358,6 +355,8 @@
                             <option value="valores">🌟 Valores Cristãos</option>
                             <option value="geografia">🗺️ Geografia Bíblica</option>
                             <option value="genealogia">👨‍👩‍👧‍👦 Genealogia</option>
+                            <option value="cultura">🏛️ Cultura Bíblica</option>
+                            <option value="idioma">🔤 Idioma Hebraico/Grego</option>
                             <option value="outros">📖 Outros</option>
                         </select>
                     </div>
@@ -369,7 +368,7 @@
 
                     <div class="form-group">
                         <label>📜 Referência Bíblica</label>
-                        <input type="text" id="termReference" placeholder="Ex: 1 João 4:8, Salmos 48:2, Gênesis 11:27">
+                        <input type="text" id="termReference" placeholder="Ex: 1 João 4:8, João 1:1">
                     </div>
 
                     <div class="form-group">
@@ -387,6 +386,10 @@
                     📖 Dicionário Bíblico
                     <span id="syncStatus" class="status-badge status-warning">Local</span>
                 </h2>
+                
+                <div style="margin-bottom: 0.8rem;">
+                    <input type="text" id="downloadFileName" placeholder="Nome do arquivo (opcional)">
+                </div>
                 
                 <div class="category-stats" id="categoryStats"></div>
                 
@@ -424,33 +427,41 @@
             },
             {
                 id: 3,
-                name: "Graça",
-                category: "graca",
-                definition: "Favor imerecido de Deus para salvação.",
-                reference: "Efésios 2:8",
-                verse: "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus."
+                name: "Hebraico",
+                category: "idioma",
+                definition: "Idioma original do Antigo Testamento. Língua semítica usada pelos hebreus.",
+                reference: "Neemias 13:24",
+                verse: "E seus filhos falavam meio asdodita, e não podiam falar o judaico, senão segundo a língua de cada povo."
             },
             {
                 id: 4,
-                name: "Jerusalém",
-                category: "geografia",
-                definition: "Cidade santa, capital de Israel e centro da adoração a Deus no Antigo Testamento. Local onde Jesus foi crucificado e ressuscitou.",
-                reference: "Salmos 48:2",
-                verse: "Formosa em sua altitude, a alegria de toda a terra é o monte Sião, nos lados do norte, a cidade do grande Rei."
+                name: "Grego",
+                category: "idioma",
+                definition: "Língua original do Novo Testamento (Koiné). Idioma comum do Mediterrâneo no primeiro século.",
+                reference: "Atos 21:37",
+                verse: "E, quando iam para o introduzir na fortaleza, Paulo disse ao tribuno: É-me permitido dizer-te alguma coisa? E ele disse: Sabes o grego?"
             },
             {
                 id: 5,
-                name: "Abraão",
-                category: "genealogia",
-                definition: "Pai da fé e patriarca do povo de Israel. Deus fez aliança com ele, prometendo que seria pai de muitas nações.",
-                reference: "Gênesis 17:5",
-                verse: "E não te chamarás mais Abrão, mas Abraão será o teu nome; porque por pai de muitas nações te hei posto."
+                name: "Templo",
+                category: "cultura",
+                definition: "Casa de Deus, local central de adoração e sacrifícios no Antigo Testamento.",
+                reference: "1 Reis 6:1",
+                verse: "E sucedeu que, no ano quatrocentos e oitenta depois de os filhos de Israel saírem da terra do Egito, no ano quarto do reinado de Salomão sobre Israel, no mês de Zive (este é o segundo mês), ele começou a edificar a casa do Senhor."
             }
         ];
 
         let nextId = 6;
 
-        // Carregar dados do localStorage
+        function getFileName(extensao) {
+            let nomeBase = document.getElementById('downloadFileName')?.value.trim();
+            if (!nomeBase) {
+                nomeBase = `biblioteca_${new Date().toISOString().split('T')[0]}`;
+            }
+            nomeBase = nomeBase.replace(/[^a-z0-9áéíóúâêôãõç_-]/gi, '_');
+            return `${nomeBase}.${extensao}`;
+        }
+
         function loadLocalData() {
             const saved = localStorage.getItem('bible_terms');
             if (saved) {
@@ -471,7 +482,6 @@
             localStorage.setItem('bible_terms', JSON.stringify(terms));
         }
 
-        // Extrair ID do link do Google Sheets
         function extractSheetId(url) {
             const match = url.match(/\/d\/e\/([a-zA-Z0-9_-]+)/);
             if (match) return match[1];
@@ -480,7 +490,6 @@
             return null;
         }
 
-        // Carregar do Google Sheets
         async function loadFromGoogleSheets(url) {
             if (!url) {
                 showAlert('❌ Por favor, cole o link da planilha publicada!', 'error');
@@ -489,7 +498,7 @@
 
             const sheetId = extractSheetId(url);
             if (!sheetId) {
-                showAlert('❌ Não foi possível extrair o ID da planilha. Verifique o link.', 'error');
+                showAlert('❌ Não foi possível extrair o ID da planilha.', 'error');
                 return false;
             }
 
@@ -502,13 +511,13 @@
                 const csvText = await response.text();
                 
                 if (!csvText || csvText.trim() === '') {
-                    showAlert('⚠️ A planilha está vazia. Publicou corretamente?', 'error');
+                    showAlert('⚠️ A planilha está vazia.', 'error');
                     return false;
                 }
                 
                 const lines = csvText.split('\n');
                 if (lines.length < 2) {
-                    showAlert('⚠️ Planilha sem dados. Adicione pelo menos o cabeçalho e uma linha de dados.', 'error');
+                    showAlert('⚠️ Planilha sem dados.', 'error');
                     return false;
                 }
                 
@@ -516,12 +525,13 @@
                 const requiredCols = ['name', 'definition'];
                 const missingCols = requiredCols.filter(col => !headers.includes(col));
                 if (missingCols.length > 0) {
-                    showAlert(`⚠️ Colunas faltando: ${missingCols.join(', ')}. Sua planilha deve ter: name, category, definition, reference, verse`, 'error');
+                    showAlert(`⚠️ Colunas faltando: ${missingCols.join(', ')}`, 'error');
                     return false;
                 }
                 
                 const newTerms = [];
                 let maxId = 0;
+                const validCategories = ['amor', 'fe', 'graca', 'valores', 'geografia', 'genealogia', 'cultura', 'idioma', 'outros'];
                 
                 for (let i = 1; i < lines.length; i++) {
                     if (!lines[i].trim()) continue;
@@ -537,8 +547,6 @@
                     
                     if (term.name && term.definition) {
                         let category = term.category || 'outros';
-                        // Validar categoria
-                        const validCategories = ['amor', 'fe', 'graca', 'valores', 'geografia', 'genealogia', 'outros'];
                         if (!validCategories.includes(category)) {
                             category = 'outros';
                         }
@@ -568,12 +576,12 @@
                     localStorage.setItem('bible_sheet_url', url);
                     return true;
                 } else {
-                    showAlert('⚠️ Nenhum termo encontrado. Verifique se as colunas estão corretas: name, definition', 'error');
+                    showAlert('⚠️ Nenhum termo encontrado.', 'error');
                     return false;
                 }
             } catch (error) {
                 console.error('Erro:', error);
-                showAlert('❌ Erro ao carregar. Verifique se a planilha está publicada como "Página da web".', 'error');
+                showAlert('❌ Erro ao carregar. Verifique se a planilha está publicada.', 'error');
                 return false;
             }
         }
@@ -618,13 +626,13 @@
             const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
             link.href = url;
-            link.setAttribute('download', `biblioteca_${new Date().toISOString().split('T')[0]}.csv`);
+            link.setAttribute('download', getFileName('csv'));
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
             
-            showAlert('✅ CSV exportado! Agora importe no Google Sheets (Arquivo → Importar)', 'success');
+            showAlert(`✅ CSV "${link.download}" exportado!`, 'success');
         }
 
         function addTerm(term) {
@@ -728,10 +736,12 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `biblioteca_${new Date().toISOString().split('T')[0]}.json`;
+            a.download = getFileName('json');
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            showAlert('✅ JSON baixado com sucesso!', 'success');
+            showAlert(`✅ JSON "${a.download}" baixado!`, 'success');
         }
 
         function getCategoryClass(cat) {
@@ -741,7 +751,9 @@
                 graca: "category-graca",
                 valores: "category-valores",
                 geografia: "category-geografia",
-                genealogia: "category-genealogia"
+                genealogia: "category-genealogia",
+                cultura: "category-cultura",
+                idioma: "category-idioma"
             };
             return classes[cat] || "category-outros";
         }
@@ -754,6 +766,8 @@
                 valores: "🌟 Valores",
                 geografia: "🗺️ Geografia",
                 genealogia: "👨‍👩‍👧‍👦 Genealogia",
+                cultura: "🏛️ Cultura",
+                idioma: "🔤 Idioma",
                 outros: "📖 Outros"
             };
             return labels[cat] || cat;
@@ -767,6 +781,8 @@
                 valores: "🌟",
                 geografia: "🗺️",
                 genealogia: "👨‍👩‍👧‍👦",
+                cultura: "🏛️",
+                idioma: "🔤",
                 outros: "📖"
             };
             return icons[cat] || "📖";
@@ -780,6 +796,8 @@
                 valores: 0,
                 geografia: 0,
                 genealogia: 0,
+                cultura: 0,
+                idioma: 0,
                 outros: 0
             };
             
@@ -800,6 +818,8 @@
                 <div class="stat-chip">🌟 Valores: <span>${stats.valores}</span></div>
                 <div class="stat-chip">🗺️ Geografia: <span>${stats.geografia}</span></div>
                 <div class="stat-chip">👨‍👩‍👧‍👦 Genealogia: <span>${stats.genealogia}</span></div>
+                <div class="stat-chip">🏛️ Cultura: <span>${stats.cultura}</span></div>
+                <div class="stat-chip">🔤 Idioma: <span>${stats.idioma}</span></div>
                 <div class="stat-chip">📖 Outros: <span>${stats.outros}</span></div>
             `;
         }
@@ -890,17 +910,17 @@
         
         document.getElementById('useDemoBtn').addEventListener('click', () => {
             terms = [
-                { id: 1, name: "Amor", category: "amor", definition: "Sentimento de afeto profundo. No contexto bíblico, é a essência do caráter de Deus.", reference: "1 João 4:8", verse: "Aquele que não ama não conhece a Deus, porque Deus é amor." },
-                { id: 2, name: "Fé", category: "fe", definition: "Confiança inabalável em Deus e em Suas promessas.", reference: "Hebreus 11:1", verse: "Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem." },
-                { id: 3, name: "Graça", category: "graca", definition: "Favor imerecido de Deus para salvação.", reference: "Efésios 2:8", verse: "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus." },
-                { id: 4, name: "Jerusalém", category: "geografia", definition: "Cidade santa, capital de Israel e centro da adoração a Deus no Antigo Testamento.", reference: "Salmos 48:2", verse: "Formosa em sua altitude, a alegria de toda a terra é o monte Sião." },
-                { id: 5, name: "Abraão", category: "genealogia", definition: "Pai da fé e patriarca do povo de Israel.", reference: "Gênesis 17:5", verse: "Por pai de muitas nações te hei posto." }
+                { id: 1, name: "Amor", category: "amor", definition: "Sentimento de afeto profundo...", reference: "1 João 4:8", verse: "Deus é amor." },
+                { id: 2, name: "Fé", category: "fe", definition: "Confiança inabalável em Deus...", reference: "Hebreus 11:1", verse: "Ora, a fé é o firme fundamento..." },
+                { id: 3, name: "Hebraico", category: "idioma", definition: "Idioma original do Antigo Testamento.", reference: "Neemias 13:24", verse: "Não podiam falar o judaico." },
+                { id: 4, name: "Grego", category: "idioma", definition: "Língua original do Novo Testamento.", reference: "Atos 21:37", verse: "Sabes o grego?" },
+                { id: 5, name: "Templo", category: "cultura", definition: "Casa de Deus, local de adoração.", reference: "1 Reis 6:1", verse: "Edificar a casa do Senhor." }
             ];
             nextId = 6;
             updateLocalStorage();
             renderTerms();
             updateStats();
-            showAlert('✅ Dados de demonstração carregados com as novas categorias!', 'success');
+            showAlert('✅ Dados de demonstração carregados!', 'success');
             document.getElementById('syncStatus').textContent = 'Demo';
             document.getElementById('syncStatus').className = 'status-badge status-warning';
         });

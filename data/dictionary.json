@@ -1,11 +1,195 @@
 {
   "biblioteca": {
     "titulo": "Dicionário Bíblico",
-    "dataExportacao": "12/05/2026, 09:23:23",
-    "totalTermos": 6,
+    "dataExportacao": "12/05/2026, 11:04:49",
+    "totalTermos": 61,
     "termos": [
       {
         "id": 1,
+        "name": "Ação (de graças)",
+        "category": "valores",
+        "definition": "Confissão de bênçãos, ato de agradecer a Deus.",
+        "reference": "1 Tessalonicenses 5:18",
+        "verse": "Em tudo dai graças..."
+      },
+      {
+        "id": 2,
+        "name": "Acepção",
+        "category": "valores",
+        "definition": "Discriminação, privilégio ou preferência por pessoas.",
+        "reference": "Romanos 2:11",
+        "verse": "Porque para com Deus não há acepção de pessoas."
+      },
+      {
+        "id": 3,
+        "name": "Admoestar",
+        "category": "valores",
+        "definition": "Advertir; lembrar, avisar para corrigir ou ensinar.",
+        "reference": "Colossenses 3:16",
+        "verse": "A palavra de Cristo habite em vós abundantemente..."
+      },
+      {
+        "id": 4,
+        "name": "Amargura",
+        "category": "outros",
+        "definition": "Tristeza, sofrimento, mágoa; amargor que contamina.",
+        "reference": "Efésios 4:31",
+        "verse": "Toda amargura, e ira, e cólera... sejam tiradas"
+      },
+      {
+        "id": 5,
+        "name": "Apóstolo",
+        "category": "valores",
+        "definition": "Alguém enviado como representante, mensageiro autorizado.",
+        "reference": "Efésios 4:11",
+        "verse": "E ele mesmo deu uns para apóstolos..."
+      },
+      {
+        "id": 6,
+        "name": "Arraigado",
+        "category": "valores",
+        "definition": "Que se arraigou; enraizado, radicado na fé.",
+        "reference": "Efésios 3:17",
+        "verse": "Estando arraigados e fundados em amor"
+      },
+      {
+        "id": 7,
+        "name": "Astúcia",
+        "category": "outros",
+        "definition": "Habilidade em enganar; lábia, artimanha, ardil.",
+        "reference": "Provérbios 12:2",
+        "verse": "O homem de astutos intentos ele condenará"
+      },
+      {
+        "id": 8,
+        "name": "Avareza",
+        "category": "outros",
+        "definition": "Excessivo apego ao dinheiro; mesquinhez.",
+        "reference": "Lucas 12:15",
+        "verse": "Guardai-vos da avareza"
+      },
+      {
+        "id": 9,
+        "name": "Avidez",
+        "category": "outros",
+        "definition": "Ansiedade, cobiça, ambição, voracidade.",
+        "reference": "Provérbios 28:22",
+        "verse": "O que tem olho avarento corre atrás das riquezas"
+      },
+      {
+        "id": 10,
+        "name": "Beneplácito",
+        "category": "valores",
+        "definition": "Consentimento, aprovação, aprazimento divino.",
+        "reference": "Efésios 1:5",
+        "verse": "Segundo o beneplácito de sua vontade"
+      },
+      {
+        "id": 11,
+        "name": "Blasfêmia",
+        "category": "outros",
+        "definition": "Palavra ultrajante contra Deus; insulto.",
+        "reference": "Mateus 12:31",
+        "verse": "Blasfêmia contra o Espírito não será perdoada"
+      },
+      {
+        "id": 12,
+        "name": "Chocarrice",
+        "category": "outros",
+        "definition": "Gracejo grosseiro e atrevido; escárnio.",
+        "reference": "Efésios 5:4",
+        "verse": "Nem chocarrice, que não convêm"
+      },
+      {
+        "id": 13,
+        "name": "Cólera",
+        "category": "outros",
+        "definition": "Ira, raiva, fúria, furor, zanga.",
+        "reference": "Colossenses 3:8",
+        "verse": "Despojai-vos da ira, da cólera"
+      },
+      {
+        "id": 14,
+        "name": "Comunicar",
+        "category": "valores",
+        "definition": "Participar, compartilhar com os necessitados.",
+        "reference": "Hebreus 13:16",
+        "verse": "Não vos esqueçais da comunicação"
+      },
+      {
+        "id": 15,
+        "name": "Concidadão",
+        "category": "valores",
+        "definition": "Cidadão dos santos, da família de Deus.",
+        "reference": "Efésios 2:19",
+        "verse": "Concidadãos dos santos"
+      },
+      {
+        "id": 16,
+        "name": "Concupiscência",
+        "category": "outros",
+        "definition": "Desejo intenso de bens materiais; apetite desordenado.",
+        "reference": "1 João 2:16",
+        "verse": "A concupiscência da carne"
+      },
+      {
+        "id": 17,
+        "name": "Descobrindo",
+        "category": "valores",
+        "definition": "Revelando-nos, tornando conhecido.",
+        "reference": "Efésios 1:9",
+        "verse": "Descobrindo-nos o mistério da sua vontade"
+      },
+      {
+        "id": 18,
+        "name": "Desfalecer",
+        "category": "valores",
+        "definition": "Perder as forças; desmaiar; esmorecer.",
+        "reference": "Isaías 40:31",
+        "verse": "Os que esperam no Senhor renovarão as forças"
+      },
+      {
+        "id": 19,
+        "name": "Despojar",
+        "category": "valores",
+        "definition": "Despir-se; deixar de lado o velho homem.",
+        "reference": "Colossenses 3:9",
+        "verse": "Despistes do velho homem"
+      },
+      {
+        "id": 20,
+        "name": "Devasso",
+        "category": "outros",
+        "definition": "Dissoluto, libertino, licencioso.",
+        "reference": "Romanos 1:27",
+        "verse": "Se inflamaram em sua sensualidade"
+      },
+      {
+        "id": 21,
+        "name": "Dissolução",
+        "category": "outros",
+        "definition": "Perversão de costumes; devassidão.",
+        "reference": "Gálatas 5:19",
+        "verse": "As obras da carne são... dissolução"
+      },
+      {
+        "id": 22,
+        "name": "Doutrina",
+        "category": "valores",
+        "definition": "Conjunto de princípios religiosos; regra, preceito.",
+        "reference": "2 Timóteo 3:16",
+        "verse": "Toda Escritura é útil para o ensino"
+      },
+      {
+        "id": 23,
+        "name": "Embaixador",
+        "category": "valores",
+        "definition": "Representante diplomático; embaixador de Cristo.",
+        "reference": "2 Coríntios 5:20",
+        "verse": "Somos embaixadores da parte de Cristo"
+      },
+      {
+        "id": 24,
         "name": "Amor",
         "category": "amor",
         "definition": "Sentimento de afeto profundo. No contexto bíblico, é a essência do caráter de Deus.",
@@ -13,44 +197,300 @@
         "verse": "Aquele que não ama não conhece a Deus, porque Deus é amor."
       },
       {
-        "id": 2,
+        "id": 25,
         "name": "Fé",
-        "category": "fe",
+        "category": "outros",
         "definition": "Confiança inabalável em Deus e em Suas promessas.",
         "reference": "Hebreus 11:1",
         "verse": "Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem."
       },
       {
-        "id": 3,
+        "id": 26,
         "name": "Graça",
-        "category": "graca",
+        "category": "outros",
         "definition": "Favor imerecido de Deus para salvação, um presente divino que não podemos conquistar por obras.",
         "reference": "Efésios 2:8",
         "verse": "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus."
       },
       {
-        "id": 4,
+        "id": 27,
         "name": "Esperança",
-        "category": "valores",
+        "category": "outros",
         "definition": "Viva expectativa do cumprimento das promessas de Deus.",
         "reference": "Romanos 15:13",
         "verse": "O Deus da esperança vos encha de todo o gozo e paz no vosso crer."
       },
       {
-        "id": 5,
-        "name": "Justiça",
-        "category": "valores",
+        "id": 28,
+        "name": "Justça",
+        "category": "outros",
         "definition": "Atributo divino que representa retidão e equidade.",
         "reference": "Miqueias 6:8",
         "verse": "Ele te declarou, ó homem, o que é bom; e que é o que o Senhor pede de ti? Que pratiques a justiça, e ames a misericórdia, e andes humildemente com o teu Deus."
       },
       {
-        "id": 6,
-        "name": "Outeiro",
+        "id": 29,
+        "name": "Aguilhada",
         "category": "outros",
-        "definition": "Monte   pequeno;   pequena   elevação   de   terra   firme;\ncolina; morro.",
-        "reference": "Gênesis 49:26",
-        "verse": "As bênçãos de teu pai excederão as bênçãos de meus pais, até à extremidade dos outeiros eternos; elas estarão sobre a cabeça de José, e sobre o alto da cabeça do que foi separado de seus irmãos."
+        "definition": "Vara delgada e comprida com ferrão na ponta, para picar e conduzir os bois.",
+        "reference": "Juízes 3:31",
+        "verse": "Depois dele foi Sangar, filho de Anate, que feriu a seiscentos homens dos filisteus com uma aguilhada de bois; e também ele libertou a Israel."
+      },
+      {
+        "id": 30,
+        "name": "Abrogar",
+        "category": "outros",
+        "definition": "Pôr em desuso; anular, suprimir, revogar, derrogar uma lei ou costume.",
+        "reference": "Gálatas 3:17",
+        "verse": "A aliança que anteriormente foi confirmada por Deus em Cristo, a lei, que veio quatrocentos e trinta anos depois, não pode ab-rogar."
+      },
+      {
+        "id": 31,
+        "name": "Abrolho",
+        "category": "geografia",
+        "definition": "Designação comum a diversas plantas rasteiras e espinhosas; erva daninha que cresce em terrenos áridos.",
+        "reference": "Provérbios 24:31",
+        "verse": "E eis que havia crescido nela todo o espinhal, a sua superfície estava coberta de abrolhos, e o seu muro de pedra já estava derrubado."
+      },
+      {
+        "id": 32,
+        "name": "Adjacente",
+        "category": "geografia",
+        "definition": "Contíguo; junto; confinante. Próximo, vizinho a um local.",
+        "reference": "Ezequiel 38:11",
+        "verse": "E dirás: Subirei contra a terra das aldeias sem muro; virei contra os que estão em repouso, que habitam seguros; todos eles habitam sem muro, e não têm ferrolhos nem portas."
+      },
+      {
+        "id": 33,
+        "name": "Admoestar",
+        "category": "valores",
+        "definition": "Advertir; lembrar, avisar com o propósito de corrigir ou ensinar.",
+        "reference": "Colossenses 3:16",
+        "verse": "A palavra de Cristo habite em vós abundantemente, em toda a sabedoria, ensinando-vos e admoestando-vos uns aos outros."
+      },
+      {
+        "id": 34,
+        "name": "Alcofa",
+        "category": "cultura",
+        "definition": "Cesto flexível, de vime, de esparto ou de folha de palma, achatado e com asas usado para transportar alimentos.",
+        "reference": "Amós 8:1-2",
+        "verse": "O Senhor DEUS mostrou-me isto: eis um cesto de frutos de verão. E disse: Que vês, Amós? E eu disse: Um cesto de frutos de verão."
+      },
+      {
+        "id": 35,
+        "name": "Alfaia",
+        "category": "cultura",
+        "definition": "Enfeite, adorno, atavio usado para embelezamento pessoal ou de objetos sagrados.",
+        "reference": "Êxodo 33:4",
+        "verse": "Então o povo, ouvindo esta má notícia, chorou; e nenhum deles pôs os seus alfaias."
+      },
+      {
+        "id": 36,
+        "name": "Alforje",
+        "category": "cultura",
+        "definition": "Duplo saco, fechado nas extremidades e aberto no meio, transportado ao ombro para carregar alimentos.",
+        "reference": "Lucas 22:35",
+        "verse": "E disse-lhes: Quando vos mandei sem bolsa, alforje, e sandálias, faltou-vos alguma coisa? E eles disseram: Nada."
+      },
+      {
+        "id": 37,
+        "name": "Alistamento",
+        "category": "cultura",
+        "definition": "Recenseamento, registro ou censo da população para fins administrativos ou tributários.",
+        "reference": "Lucas 2:1",
+        "verse": "E aconteceu naqueles dias que saiu um decreto da parte de César Augusto, para que todo o mundo se alistasse."
+      },
+      {
+        "id": 38,
+        "name": "Almude",
+        "category": "cultura",
+        "definition": "Talho, medida antiga para líquidos, equivalente a aproximadamente 25 litros.",
+        "reference": "João 2:6",
+        "verse": "E estavam ali postas seis talhas de pedra, para as purificações dos judeus, que continham cada duas ou três almudes."
+      },
+      {
+        "id": 39,
+        "name": "Alparcas",
+        "category": "cultura",
+        "definition": "Sandálias, calçado simples feito de couro ou corda, comum nos tempos bíblicos.",
+        "reference": "Marcos 6:9",
+        "verse": "Mas que calcem alparcas; e não vistas duas túnicas."
+      },
+      {
+        "id": 40,
+        "name": "Alpendre",
+        "category": "cultura",
+        "definition": "Cobertura saliente, de uma só água, situada em geral à entrada de um prédio, apoiada em pilares.",
+        "reference": "Ezequiel 40:7",
+        "verse": "Cada câmara tinha uma cana de comprimento, e outra de largura; e entre as câmaras havia cinco côvados; e o limiar da porta junto ao alpendre da porta, por dentro, tinha uma cana."
+      },
+      {
+        "id": 41,
+        "name": "Alqueire",
+        "category": "cultura",
+        "definition": "Antiga unidade de medida de capacidade para secos, equivalente a 36,27 litros; também vasilha de medida.",
+        "reference": "Mateus 5:15",
+        "verse": "Nem se acende a candeia e se coloca debaixo do alqueire, mas no velador, e dá luz a todos que estão na casa."
+      },
+      {
+        "id": 42,
+        "name": "Ânimo",
+        "category": "valores",
+        "definition": "Disposição resoluta e inalterável em face de situações difíceis; coragem; vontade; força.",
+        "reference": "Josué 1:9",
+        "verse": "Não te mandei eu? Esforça-te e tem bom ânimo; não te atemorizes, nem te espantes; porque o Senhor teu Deus está contigo, por onde quer que andares."
+      },
+      {
+        "id": 43,
+        "name": "Aperto",
+        "category": "valores",
+        "definition": "Grande aflição, angústia profunda, situação de aperto e tribulação.",
+        "reference": "Lucas 21:23",
+        "verse": "Mas ai das que estiverem grávidas, e das que criarem naqueles dias! Porque haverá grande aperto na terra e ira sobre este povo."
+      },
+      {
+        "id": 44,
+        "name": "Archote",
+        "category": "cultura",
+        "definition": "Facho, candeio embreado que se acende para iluminar ao ar livre.",
+        "reference": "João 18:3",
+        "verse": "Veio, pois, Judas, tomando consigo a coorte e os guardas dos principais sacerdotes e dos fariseus, com archotes e lanternas e armas."
+      },
+      {
+        "id": 45,
+        "name": "Argueiro",
+        "category": "valores",
+        "definition": "Partícula leve, grânulo, cisco. Usado metaforicamente para falhas pequenas alheias.",
+        "reference": "Mateus 7:3",
+        "verse": "E por que reparas tu no argueiro que está no olho do teu irmão, e não vês a trave que está no teu olho?"
+      },
+      {
+        "id": 46,
+        "name": "Arrátel",
+        "category": "cultura",
+        "definition": "Unidade de peso: 50 siclos (571,2g) ou libra romana (325g). Usada para ungüento e especiarias.",
+        "reference": "João 19:39",
+        "verse": "E foi também Nicodemos (aquele que anteriormente tinha ido de noite ter com Jesus), levando quase cem arráteis de uma mistura de mirra e aloés."
+      },
+      {
+        "id": 47,
+        "name": "Arrazoar",
+        "category": "valores",
+        "definition": "Expor ou defender causa, assunto ou argumento alegando razões; argumentar.",
+        "reference": "Atos 24:13",
+        "verse": "Nem te podem provar as coisas de que agora me acusam."
+      },
+      {
+        "id": 48,
+        "name": "Arrendar",
+        "category": "cultura",
+        "definition": "Aluguel ou contrato pelo qual alguém cede a outrem, por certo tempo e preço, o uso de imóveis ou terras.",
+        "reference": "Mateus 21:33",
+        "verse": "Ouvi outra parábola: Havia um proprietário que plantou uma vinha, e cercou-a, e escavou nela um lagar, e edificou uma torre; e arrendou-a a uns lavradores, e partiu para longe."
+      },
+      {
+        "id": 49,
+        "name": "Arrojar",
+        "category": "valores",
+        "definition": "Lançar com ímpeto ou força; atirar, arremessar com violência.",
+        "reference": "Êxodo 15:25",
+        "verse": "Então Moisés clamou ao Senhor, e o Senhor mostrou-lhe uma árvore, que lançou nas águas, e as águas se tornaram doces."
+      },
+      {
+        "id": 50,
+        "name": "Assunção",
+        "category": "valores",
+        "definition": "Elevação aos céus; ato de ser levado para o céu.",
+        "reference": "Marcos 16:19",
+        "verse": "Ora, o Senhor, depois de lhes ter falado, foi recebido no céu e assentou-se à direita de Deus."
+      },
+      {
+        "id": 51,
+        "name": "Atracar",
+        "category": "cultura",
+        "definition": "Amarrar o barco, ancorar, prender a embarcação no porto.",
+        "reference": "Atos 21:3",
+        "verse": "E, avistando Chipre, deixando-a à esquerda, navegávamos para a Síria e chegamos a Tiro, porque o navio havia de descarregar ali a sua carga."
+      },
+      {
+        "id": 52,
+        "name": "Avareza",
+        "category": "outros",
+        "definition": "Excessivo e sórdido apego ao dinheiro; esganação. Falta de generosidade; mesquinhez.",
+        "reference": "Lucas 12:15",
+        "verse": "E disse-lhes: Acautelai-vos e guardai-vos da avareza; porque a vida de qualquer não consiste na abundância do que possui."
+      },
+      {
+        "id": 53,
+        "name": "Aviltado",
+        "category": "outros",
+        "definition": "Humilhado, rebaixado. Desonrado, desacreditado, tratado com desprezo.",
+        "reference": "Malaquias 1:7",
+        "verse": "Dizeis: Em que te aviltamos? Nisto que dizeis: A mesa do Senhor é desprezível."
+      },
+      {
+        "id": 54,
+        "name": "Azorrague",
+        "category": "cultura",
+        "definition": "Flagelo, castigo, suplício feito com cordéis ou tiras de couro.",
+        "reference": "João 2:15",
+        "verse": "E tendo feito um azorrague de cordéis, lançou todos fora do templo, tanto as ovelhas como os bois; e espalhou o dinheiro dos cambistas, e derribou as mesas."
+      },
+      {
+        "id": 55,
+        "name": "Bendito",
+        "category": "valores",
+        "definition": "Diz-se daquele ou daquilo a quem se abençoou, que é abençoado. Feliz, ditoso.",
+        "reference": "Salmos 103:1-2",
+        "verse": "Bendize, ó minha alma, ao Senhor, e tudo o que há em mim bendiga o seu santo nome. Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum dos seus benefícios."
+      },
+      {
+        "id": 56,
+        "name": "Blasfêmia",
+        "category": "outros",
+        "definition": "Palavra ultrajante, insulto contra Deus; insulto a pessoa ou coisa respeitável; praga; impropério.",
+        "reference": "Mateus 12:31",
+        "verse": "Portanto, eu vos digo: Todo pecado e blasfêmia se perdoará aos homens; mas a blasfêmia contra o Espírito não será perdoada aos homens."
+      },
+      {
+        "id": 57,
+        "name": "Bodas",
+        "category": "cultura",
+        "definition": "Celebração de casamento; festa com que se celebra a união matrimonial.",
+        "reference": "João 2:1",
+        "verse": "E, ao terceiro dia, fizeram-se umas bodas em Caná da Galileia; e estava ali a mãe de Jesus."
+      },
+      {
+        "id": 58,
+        "name": "Bonança",
+        "category": "valores",
+        "definition": "Sossego, tranquilidade, serenidade, especialmente após tempestade.",
+        "reference": "Mateus 8:26",
+        "verse": "E ele disse-lhes: Por que temeis, homens de pouca fé? Então, levantando-se, repreendeu os ventos e o mar, e seguiu-se uma grande bonança."
+      },
+      {
+        "id": 59,
+        "name": "Caiado",
+        "category": "cultura",
+        "definition": "Revestido de cal, coberto com cal para proteção e embelezamento.",
+        "reference": "Atos 23:3",
+        "verse": "Então Paulo lhe disse: Deus te ferirá, parede caiada! Tu estás aí sentado para me julgar conforme a lei, e contra a lei me mandas ferir?"
+      },
+      {
+        "id": 60,
+        "name": "Calma",
+        "category": "cultura",
+        "definition": "Calor do dia, mormaço, momento de maior calor.",
+        "reference": "Gênesis 18:1",
+        "verse": "Depois apareceu o Senhor a ele (Abraão) nos carvalhais de Manre, estando ele assentado à porta da tenda, no calor do dia."
+      },
+      {
+        "id": 61,
+        "name": "Calúnia",
+        "category": "outros",
+        "definition": "Falsa imputação de um fato definido como crime; mentira; falsa acusação.",
+        "reference": "Lucas 3:14",
+        "verse": "E os soldados perguntaram-lhe: E nós, que faremos? E ele lhes disse: A ninguém trateis mal nem calunieis, e contentai-vos com o vosso soldo."
       }
     ]
   }
