@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Bíblica - Google Sheets Integration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Georgia', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3b 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #f5e6c8 0%, #e8d5a8 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .admin-header h1 {
+            color: #1a472a;
+            font-size: 2rem;
+        }
+
+        .sheet-info {
+            background: #e8f5e9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4caf50;
+        }
+
+        .sheet-info h3 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+
+        .sheet-info code {
+            background: #fff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            word-break: break-all;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        .status-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .status-error {
+            background: #f44336;
+            color: white;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+
+        .form-card, .terms-list {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .form-card h2, .terms-list h2 {
+            color: #1a472a;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #c4a35a;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d5a3b;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #c4a35a;
+        }
+
+        .btn {
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3b 100%);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-secondary {
+            background: #c4a35a;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-info {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .term-item {
+            background: #f8f9fa;
+            border-radius: 0.7rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #c4a35a;
+            transition: all 0.3s;
+        }
+
+        .term-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .term-item h3 {
+            color: #1a472a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .term-category {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .category-amor { background: #fee2e2; color: #991b1b; }
+        .category-fe { background: #dbeafe; color: #1e40af; }
+        .category-graca { background: #d1fae5; color: #065f46; }
+        .category-valores { background: #fef3c7; color: #92400e; }
+        .category-geografia { background: #d1fae5; color: #065f46; }
+        .category-genealogia { background: #fce7f3; color: #9d174d; }
+        .category-outros { background: #e0e7ff; color: #3730a3; }
+
+        .term-reference {
+            color: #c4a35a;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .term-verse {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #f0e6d2;
+            border-radius: 0.5rem;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .alert {
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .button-group .btn {
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .inline-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .inline-input input {
+            flex: 1;
+        }
+
+        .helper-text {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .category-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-chip {
+            background: #f0e6d2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1a472a;
+        }
+
+        .stat-chip span {
+            font-weight: normal;
+            color: #c4a35a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-header">
+            <h1>📖 Biblioteca Bíblica</h1>
+            <p>Sincronizado com Google Sheets | Geografia e Genealogia</p>
+        </div>
+
+        <div class="sheet-info">
+            <h3>🔗 Como conectar sua planilha do Google</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                <li>Crie uma planilha com as colunas: <strong>name, category, definition, reference, verse</strong></li>
+                <li>Preencha os dados (ex: Amor | amor | Definição... | 1 João 4:8 | Versículo)</li>
+                <li>Vá em <strong>Arquivo → Compartilhar → Publicar na web</strong></li>
+                <li>Clique em <strong>"Publicar"</strong> (não precisa selecionar nada específico)</li>
+                <li>Copie o <strong>LINK COMPLETO</strong> da planilha publicada</li>
+                <li>Cole o link abaixo e clique em <strong>📥 Carregar Planilha</strong></li>
+            </ol>
+            <div class="inline-input">
+                <input type="text" id="sheetUrl" placeholder="Cole o link completo da planilha publicada" style="flex: 1;">
+                <button id="loadSheetBtn" class="btn btn-success" style="margin: 0;">📥 Carregar</button>
+            </div>
+            <div class="helper-text">
+                💡 Exemplo de link: https://docs.google.com/spreadsheets/d/e/2PACX-.../pubhtml
+            </div>
+            <div style="margin-top: 0.5rem;">
+                <button id="useDemoBtn" class="btn btn-secondary" style="margin: 0; padding: 0.3rem 0.8rem; font-size: 0.8rem;">📖 Usar Dados de Demonstração</button>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div class="form-card">
+                <h2>📝 Adicionar/Editar Termo</h2>
+                <div id="alertMessage"></div>
+                
+                <form id="termForm">
+                    <input type="hidden" id="editId" value="">
+                    
+                    <div class="form-group">
+                        <label>📖 Termo *</label>
+                        <input type="text" id="termName" required placeholder="Ex: Amor, Fé, Graça, Jerusalém, Abraão">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📂 Categoria *</label>
+                        <select id="termCategory" required>
+                            <option value="">Selecione...</option>
+                            <option value="amor">❤️ Amor</option>
+                            <option value="fe">🙏 Fé</option>
+                            <option value="graca">✨ Graça</option>
+                            <option value="valores">🌟 Valores Cristãos</option>
+                            <option value="geografia">🗺️ Geografia Bíblica</option>
+                            <option value="genealogia">👨‍👩‍👧‍👦 Genealogia</option>
+                            <option value="outros">📖 Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>💬 Definição *</label>
+                        <textarea id="termDefinition" rows="3" required placeholder="Significado bíblico..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📜 Referência Bíblica</label>
+                        <input type="text" id="termReference" placeholder="Ex: 1 João 4:8, Salmos 48:2, Gênesis 11:27">
+                    </div>
+
+                    <div class="form-group">
+                        <label>✝️ Versículo Completo</label>
+                        <textarea id="termVerse" rows="2" placeholder="Digite o versículo..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn">➕ Adicionar Termo</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none; margin-top: 0.5rem;">❌ Cancelar</button>
+                </form>
+            </div>
+
+            <div class="terms-list">
+                <h2>
+                    📖 Dicionário Bíblico
+                    <span id="syncStatus" class="status-badge status-warning">Local</span>
+                </h2>
+                
+                <div class="category-stats" id="categoryStats"></div>
+                
+                <input type="text" id="searchInput" placeholder="🔍 Buscar termo..." style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid #ccc;">
+                <div id="termsContainer">
+                    <div class="loading">📚 Carregando termos...</div>
+                </div>
+                
+                <div class="button-group">
+                    <button id="exportCsvBtn" class="btn btn-success">📤 Exportar CSV</button>
+                    <button id="downloadJsonBtn" class="btn btn-primary">💾 Baixar JSON</button>
+                </div>
+                <button id="clearAllBtn" class="btn btn-danger" style="width: 100%; margin-top: 0.5rem;">🗑️ Limpar Todos</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let terms = [
+            {
+                id: 1,
+                name: "Amor",
+                category: "amor",
+                definition: "Sentimento de afeto profundo. No contexto bíblico, é a essência do caráter de Deus.",
+                reference: "1 João 4:8",
+                verse: "Aquele que não ama não conhece a Deus, porque Deus é amor."
+            },
+            {
+                id: 2,
+                name: "Fé",
+                category: "fe",
+                definition: "Confiança inabalável em Deus e em Suas promessas.",
+                reference: "Hebreus 11:1",
+                verse: "Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem."
+            },
+            {
+                id: 3,
+                name: "Graça",
+                category: "graca",
+                definition: "Favor imerecido de Deus para salvação.",
+                reference: "Efésios 2:8",
+                verse: "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus."
+            },
+            {
+                id: 4,
+                name: "Jerusalém",
+                category: "geografia",
+                definition: "Cidade santa, capital de Israel e centro da adoração a Deus no Antigo Testamento. Local onde Jesus foi crucificado e ressuscitou.",
+                reference: "Salmos 48:2",
+                verse: "Formosa em sua altitude, a alegria de toda a terra é o monte Sião, nos lados do norte, a cidade do grande Rei."
+            },
+            {
+                id: 5,
+                name: "Abraão",
+                category: "genealogia",
+                definition: "Pai da fé e patriarca do povo de Israel. Deus fez aliança com ele, prometendo que seria pai de muitas nações.",
+                reference: "Gênesis 17:5",
+                verse: "E não te chamarás mais Abrão, mas Abraão será o teu nome; porque por pai de muitas nações te hei posto."
+            }
+        ];
+
+        let nextId = 6;
+
+        // Carregar dados do localStorage
+        function loadLocalData() {
+            const saved = localStorage.getItem('bible_terms');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && parsed.length > 0) {
+                        terms = parsed;
+                        nextId = Math.max(...terms.map(t => t.id), 0) + 1;
+                    }
+                } catch(e) {}
+            }
+            renderTerms();
+            updateStats();
+            updateLocalStorage();
+        }
+
+        function updateLocalStorage() {
+            localStorage.setItem('bible_terms', JSON.stringify(terms));
+        }
+
+        // Extrair ID do link do Google Sheets
+        function extractSheetId(url) {
+            const match = url.match(/\/d\/e\/([a-zA-Z0-9_-]+)/);
+            if (match) return match[1];
+            const match2 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match2) return match2[1];
+            return null;
+        }
+
+        // Carregar do Google Sheets
+        async function loadFromGoogleSheets(url) {
+            if (!url) {
+                showAlert('❌ Por favor, cole o link da planilha publicada!', 'error');
+                return false;
+            }
+
+            const sheetId = extractSheetId(url);
+            if (!sheetId) {
+                showAlert('❌ Não foi possível extrair o ID da planilha. Verifique o link.', 'error');
+                return false;
+            }
+
+            showAlert('🔄 Carregando dados da planilha...', 'info');
+            
+            const jsonUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pub?output=csv`;
+            
+            try {
+                const response = await fetch(jsonUrl);
+                const csvText = await response.text();
+                
+                if (!csvText || csvText.trim() === '') {
+                    showAlert('⚠️ A planilha está vazia. Publicou corretamente?', 'error');
+                    return false;
+                }
+                
+                const lines = csvText.split('\n');
+                if (lines.length < 2) {
+                    showAlert('⚠️ Planilha sem dados. Adicione pelo menos o cabeçalho e uma linha de dados.', 'error');
+                    return false;
+                }
+                
+                const headers = parseCSVLine(lines[0]);
+                const requiredCols = ['name', 'definition'];
+                const missingCols = requiredCols.filter(col => !headers.includes(col));
+                if (missingCols.length > 0) {
+                    showAlert(`⚠️ Colunas faltando: ${missingCols.join(', ')}. Sua planilha deve ter: name, category, definition, reference, verse`, 'error');
+                    return false;
+                }
+                
+                const newTerms = [];
+                let maxId = 0;
+                
+                for (let i = 1; i < lines.length; i++) {
+                    if (!lines[i].trim()) continue;
+                    
+                    const values = parseCSVLine(lines[i]);
+                    const term = {};
+                    
+                    headers.forEach((header, index) => {
+                        let value = values[index] || '';
+                        value = value.replace(/^["']|["']$/g, '');
+                        term[header] = value;
+                    });
+                    
+                    if (term.name && term.definition) {
+                        let category = term.category || 'outros';
+                        // Validar categoria
+                        const validCategories = ['amor', 'fe', 'graca', 'valores', 'geografia', 'genealogia', 'outros'];
+                        if (!validCategories.includes(category)) {
+                            category = 'outros';
+                        }
+                        
+                        const newTerm = {
+                            id: i,
+                            name: term.name.trim(),
+                            category: category,
+                            definition: term.definition.trim(),
+                            reference: term.reference || '',
+                            verse: term.verse || ''
+                        };
+                        newTerms.push(newTerm);
+                        if (newTerm.id > maxId) maxId = newTerm.id;
+                    }
+                }
+                
+                if (newTerms.length > 0) {
+                    terms = newTerms;
+                    nextId = maxId + 1;
+                    updateLocalStorage();
+                    renderTerms();
+                    updateStats();
+                    showAlert(`✅ Carregados ${terms.length} termos do Google Sheets!`, 'success');
+                    document.getElementById('syncStatus').textContent = 'Google Sheets ✓';
+                    document.getElementById('syncStatus').className = 'status-badge status-success';
+                    localStorage.setItem('bible_sheet_url', url);
+                    return true;
+                } else {
+                    showAlert('⚠️ Nenhum termo encontrado. Verifique se as colunas estão corretas: name, definition', 'error');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                showAlert('❌ Erro ao carregar. Verifique se a planilha está publicada como "Página da web".', 'error');
+                return false;
+            }
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        }
+
+        function exportToCSV() {
+            const headers = ['name', 'category', 'definition', 'reference', 'verse'];
+            const csvRows = [headers.join(',')];
+            
+            terms.forEach(term => {
+                const row = headers.map(header => {
+                    let value = term[header] || '';
+                    if (value.includes(',') || value.includes('"') || value.includes('\n')) {
+                        value = `"${value.replace(/"/g, '""')}"`;
+                    }
+                    return value;
+                });
+                csvRows.push(row.join(','));
+            });
+            
+            const csvString = csvRows.join('\n');
+            const blob = new Blob(["\uFEFF" + csvString], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.href = url;
+            link.setAttribute('download', `biblioteca_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            showAlert('✅ CSV exportado! Agora importe no Google Sheets (Arquivo → Importar)', 'success');
+        }
+
+        function addTerm(term) {
+            if (!term.name || !term.category || !term.definition) {
+                showAlert('❌ Termo, Categoria e Definição são obrigatórios!', 'error');
+                return false;
+            }
+            
+            const newTerm = {
+                id: nextId++,
+                name: term.name.trim(),
+                category: term.category,
+                definition: term.definition.trim(),
+                reference: term.reference || '',
+                verse: term.verse || ''
+            };
+            
+            terms.push(newTerm);
+            updateLocalStorage();
+            renderTerms();
+            updateStats();
+            showAlert('✅ Termo adicionado com sucesso!', 'success');
+            document.getElementById('syncStatus').textContent = 'Local';
+            document.getElementById('syncStatus').className = 'status-badge status-warning';
+            return true;
+        }
+
+        function updateTerm(id, updatedTerm) {
+            const index = terms.findIndex(t => t.id === parseInt(id));
+            if (index !== -1) {
+                terms[index] = { ...updatedTerm, id: parseInt(id) };
+                updateLocalStorage();
+                renderTerms();
+                updateStats();
+                showAlert('✏️ Termo atualizado!', 'success');
+                document.getElementById('syncStatus').textContent = 'Local';
+                document.getElementById('syncStatus').className = 'status-badge status-warning';
+                return true;
+            }
+            return false;
+        }
+
+        function deleteTerm(id) {
+            const term = terms.find(t => t.id === id);
+            if (confirm(`Excluir "${term?.name}"?`)) {
+                terms = terms.filter(t => t.id !== id);
+                updateLocalStorage();
+                renderTerms();
+                updateStats();
+                showAlert('🗑️ Termo removido!', 'success');
+                document.getElementById('syncStatus').textContent = 'Local';
+                document.getElementById('syncStatus').className = 'status-badge status-warning';
+            }
+        }
+
+        function editTerm(id) {
+            const term = terms.find(t => t.id === id);
+            if (term) {
+                document.getElementById('editId').value = term.id;
+                document.getElementById('termName').value = term.name;
+                document.getElementById('termCategory').value = term.category;
+                document.getElementById('termDefinition').value = term.definition;
+                document.getElementById('termReference').value = term.reference || '';
+                document.getElementById('termVerse').value = term.verse || '';
+                document.getElementById('submitBtn').innerHTML = '💾 Salvar Alterações';
+                document.getElementById('cancelEditBtn').style.display = 'block';
+                document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function cancelEdit() {
+            document.getElementById('termForm').reset();
+            document.getElementById('editId').value = '';
+            document.getElementById('submitBtn').innerHTML = '➕ Adicionar Termo';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+        }
+
+        function clearAllTerms() {
+            if (confirm('⚠️ REMOVER TODOS OS TERMOS? Esta ação não pode ser desfeita!')) {
+                terms = [];
+                nextId = 1;
+                updateLocalStorage();
+                renderTerms();
+                updateStats();
+                cancelEdit();
+                showAlert('🗑️ Todos os termos foram removidos!', 'success');
+            }
+        }
+
+        function downloadJSON() {
+            const data = {
+                biblioteca: {
+                    titulo: "Dicionário Bíblico",
+                    dataExportacao: new Date().toLocaleString('pt-BR'),
+                    totalTermos: terms.length,
+                    termos: terms
+                }
+            };
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `biblioteca_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showAlert('✅ JSON baixado com sucesso!', 'success');
+        }
+
+        function getCategoryClass(cat) {
+            const classes = {
+                amor: "category-amor",
+                fe: "category-fe",
+                graca: "category-graca",
+                valores: "category-valores",
+                geografia: "category-geografia",
+                genealogia: "category-genealogia"
+            };
+            return classes[cat] || "category-outros";
+        }
+
+        function getCategoryLabel(cat) {
+            const labels = {
+                amor: "❤️ Amor",
+                fe: "🙏 Fé", 
+                graca: "✨ Graça",
+                valores: "🌟 Valores",
+                geografia: "🗺️ Geografia",
+                genealogia: "👨‍👩‍👧‍👦 Genealogia",
+                outros: "📖 Outros"
+            };
+            return labels[cat] || cat;
+        }
+
+        function getCategoryIcon(cat) {
+            const icons = {
+                amor: "❤️",
+                fe: "🙏",
+                graca: "✨",
+                valores: "🌟",
+                geografia: "🗺️",
+                genealogia: "👨‍👩‍👧‍👦",
+                outros: "📖"
+            };
+            return icons[cat] || "📖";
+        }
+
+        function updateStats() {
+            const stats = {
+                amor: 0,
+                fe: 0,
+                graca: 0,
+                valores: 0,
+                geografia: 0,
+                genealogia: 0,
+                outros: 0
+            };
+            
+            terms.forEach(term => {
+                if (stats[term.category] !== undefined) {
+                    stats[term.category]++;
+                } else {
+                    stats.outros++;
+                }
+            });
+            
+            const statsContainer = document.getElementById('categoryStats');
+            statsContainer.innerHTML = `
+                <div class="stat-chip">📚 Total: <span>${terms.length}</span></div>
+                <div class="stat-chip">❤️ Amor: <span>${stats.amor}</span></div>
+                <div class="stat-chip">🙏 Fé: <span>${stats.fe}</span></div>
+                <div class="stat-chip">✨ Graça: <span>${stats.graca}</span></div>
+                <div class="stat-chip">🌟 Valores: <span>${stats.valores}</span></div>
+                <div class="stat-chip">🗺️ Geografia: <span>${stats.geografia}</span></div>
+                <div class="stat-chip">👨‍👩‍👧‍👦 Genealogia: <span>${stats.genealogia}</span></div>
+                <div class="stat-chip">📖 Outros: <span>${stats.outros}</span></div>
+            `;
+        }
+
+        function renderTerms() {
+            const container = document.getElementById('termsContainer');
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            
+            let filtered = terms;
+            if (searchTerm) {
+                filtered = terms.filter(t => 
+                    t.name.toLowerCase().includes(searchTerm) || 
+                    t.definition.toLowerCase().includes(searchTerm) ||
+                    (t.reference && t.reference.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="loading">📖 Nenhum termo encontrado</div>';
+                return;
+            }
+            
+            container.innerHTML = filtered.map(term => `
+                <div class="term-item">
+                    <h3>
+                        ${getCategoryIcon(term.category)} ${escapeHtml(term.name)}
+                        <span class="term-category ${getCategoryClass(term.category)}">${getCategoryLabel(term.category)}</span>
+                    </h3>
+                    <p>${escapeHtml(term.definition)}</p>
+                    ${term.reference ? `<div class="term-reference">📜 ${escapeHtml(term.reference)}</div>` : ''}
+                    ${term.verse ? `<div class="term-verse">✝️ "${escapeHtml(term.verse)}"</div>` : ''}
+                    <div style="margin-top: 0.8rem;">
+                        <button onclick="editTerm(${term.id})" class="btn btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin-right: 0.5rem;">✏️ Editar</button>
+                        <button onclick="deleteTerm(${term.id})" class="btn btn-danger" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('alertMessage');
+            alertDiv.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => alertDiv.innerHTML = '', 4000);
+        }
+
+        // Event Listeners
+        document.getElementById('termForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const editId = document.getElementById('editId').value;
+            const termData = {
+                name: document.getElementById('termName').value,
+                category: document.getElementById('termCategory').value,
+                definition: document.getElementById('termDefinition').value,
+                reference: document.getElementById('termReference').value,
+                verse: document.getElementById('termVerse').value
+            };
+            
+            if (editId) {
+                updateTerm(editId, termData);
+                cancelEdit();
+            } else {
+                addTerm(termData);
+                document.getElementById('termForm').reset();
+            }
+        });
+
+        document.getElementById('cancelEditBtn').addEventListener('click', cancelEdit);
+        document.getElementById('clearAllBtn').addEventListener('click', clearAllTerms);
+        document.getElementById('downloadJsonBtn').addEventListener('click', downloadJSON);
+        document.getElementById('exportCsvBtn').addEventListener('click', exportToCSV);
+        document.getElementById('searchInput').addEventListener('input', renderTerms);
+        
+        document.getElementById('loadSheetBtn').addEventListener('click', () => {
+            const url = document.getElementById('sheetUrl').value.trim();
+            if (url) {
+                loadFromGoogleSheets(url);
+            } else {
+                showAlert('❌ Cole o link da planilha publicada!', 'error');
+            }
+        });
+        
+        document.getElementById('useDemoBtn').addEventListener('click', () => {
+            terms = [
+                { id: 1, name: "Amor", category: "amor", definition: "Sentimento de afeto profundo. No contexto bíblico, é a essência do caráter de Deus.", reference: "1 João 4:8", verse: "Aquele que não ama não conhece a Deus, porque Deus é amor." },
+                { id: 2, name: "Fé", category: "fe", definition: "Confiança inabalável em Deus e em Suas promessas.", reference: "Hebreus 11:1", verse: "Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que não se veem." },
+                { id: 3, name: "Graça", category: "graca", definition: "Favor imerecido de Deus para salvação.", reference: "Efésios 2:8", verse: "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus." },
+                { id: 4, name: "Jerusalém", category: "geografia", definition: "Cidade santa, capital de Israel e centro da adoração a Deus no Antigo Testamento.", reference: "Salmos 48:2", verse: "Formosa em sua altitude, a alegria de toda a terra é o monte Sião." },
+                { id: 5, name: "Abraão", category: "genealogia", definition: "Pai da fé e patriarca do povo de Israel.", reference: "Gênesis 17:5", verse: "Por pai de muitas nações te hei posto." }
+            ];
+            nextId = 6;
+            updateLocalStorage();
+            renderTerms();
+            updateStats();
+            showAlert('✅ Dados de demonstração carregados com as novas categorias!', 'success');
+            document.getElementById('syncStatus').textContent = 'Demo';
+            document.getElementById('syncStatus').className = 'status-badge status-warning';
+        });
+        
+        const savedUrl = localStorage.getItem('bible_sheet_url');
+        if (savedUrl) {
+            document.getElementById('sheetUrl').value = savedUrl;
+        }
+        
+        loadLocalData();
+    </script>
+</body>
+</html>

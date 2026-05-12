@@ -2275,3 +2275,40 @@ mark {
     font-size: 0.85rem;
     line-height: 1.6;
 }
+
+/* Categorias e referências do dicionário */
+.dictionary-category {
+    background: var(--bg4);
+    color: var(--text3);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    margin-left: 8px;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.dictionary-reference {
+    color: var(--gold);
+    font-size: 0.78rem;
+    margin-top: 6px;
+    font-weight: bold;
+}
+
+.dictionary-verse {
+    color: var(--text2);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: var(--bg4);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--gold);
+    line-height: 1.5;
+}
+
+.dict-source {
+    color: var(--text3);
+    font-size: 0.7rem;
+    font-weight: normal;
+}
