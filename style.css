@@ -2312,3 +2312,245 @@ mark {
     font-size: 0.7rem;
     font-weight: normal;
 }
+
+/* ============ DETECTOR DE EMOÇÕES ============ */
+.emotion-detector {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 380px;
+    max-width: 90vw;
+    background: var(--surface);
+    border: 2px solid var(--border2);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    z-index: 500;
+    display: block;
+}
+
+.emotion-detector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.emotion-detector-title {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.emotion-close-btn {
+    background: none;
+    border: none;
+    color: var(--text3);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.emotion-close-btn:hover {
+    color: var(--text);
+}
+
+.emotion-input-area {
+    padding: 12px;
+}
+
+.emotion-textarea {
+    width: 100%;
+    padding: 10px;
+    background: var(--bg4);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.85rem;
+    resize: vertical;
+}
+
+.emotion-textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.emotion-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.emotion-analyze-btn,
+.emotion-clear-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.emotion-analyze-btn {
+    background: var(--gold-dark);
+    color: var(--gold-light);
+}
+
+.emotion-analyze-btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+}
+
+.emotion-clear-btn {
+    background: var(--bg4);
+    color: var(--text2);
+}
+
+.emotion-clear-btn:hover {
+    background: var(--fav);
+    color: white;
+}
+
+.emotion-results {
+    padding: 0 12px 12px;
+}
+
+.emotion-placeholder {
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.8rem;
+    padding: 15px;
+}
+
+.emotion-neutral {
+    text-align: center;
+    padding: 15px;
+}
+
+.emotion-neutral-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.emotion-hint {
+    color: var(--text3);
+    font-size: 0.7rem;
+    margin-top: 6px;
+}
+
+.emotion-dominant {
+    background: var(--bg4);
+    border-left: 4px solid;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.emotion-dominant-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.emotion-dominant-emoji {
+    font-size: 1.5rem;
+}
+
+.emotion-dominant-label {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.emotion-dominant-score {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.emotion-dominant-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.emotion-word-tag {
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+
+.emotion-others {
+    margin-bottom: 10px;
+}
+
+.emotion-others-title {
+    color: var(--text3);
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+}
+
+.emotion-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.emotion-bar-emoji {
+    font-size: 0.9rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.emotion-bar-label {
+    color: var(--text2);
+    font-size: 0.75rem;
+    min-width: 60px;
+}
+
+.emotion-bar-container {
+    flex: 1;
+    height: 6px;
+    background: var(--bg4);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.emotion-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+
+.emotion-bar-score {
+    color: var(--text3);
+    font-size: 0.7rem;
+    min-width: 30px;
+    text-align: right;
+}
+
+.emotion-total {
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.7rem;
+    padding: 8px;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 480px) {
+    .emotion-detector {
+        bottom: 20px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
